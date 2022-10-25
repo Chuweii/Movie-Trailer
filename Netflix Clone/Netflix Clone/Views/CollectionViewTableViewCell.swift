@@ -63,7 +63,20 @@ class CollectionViewTableViewCell: UITableViewCell {
             self.collectionView.reloadData()
         }
     }
-    //
+    
+    //download movie title
+    private func downloadTitleAt(indexPaths :[IndexPath]){
+        
+        
+        
+        for indexPath in indexPaths{
+            guard let titlesItem = titles[indexPath.item].original_title else{return}
+            print("Downloading \(String(describing: titlesItem))")
+        }
+    }
+
+    
+    
 }
 
 
@@ -111,4 +124,25 @@ extension CollectionViewTableViewCell:UICollectionViewDataSource, UICollectionVi
             }
         }
     }
+    
+    
+    //long press to pop UIMenu and download movie
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let config = UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil) { [weak self] _ in
+                
+                let downloadAction = UIAction(
+                    title: "Download",subtitle: nil,
+                    image: nil,identifier: nil,
+                    discoverabilityTitle: nil,state: .off) { _ in
+                        self?.downloadTitleAt(indexPaths: indexPaths)
+                    }
+                                
+                return UIMenu(title: "",image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
+        }
+        return config
+    }
+    
 }
