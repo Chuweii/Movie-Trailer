@@ -43,6 +43,8 @@ class CollectionViewTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -67,14 +69,22 @@ class CollectionViewTableViewCell: UITableViewCell {
     //download movie title
     private func downloadTitleAt(indexPaths :[IndexPath]){
         
-        
-        
         for indexPath in indexPaths{
             guard let titlesItem = titles[indexPath.item].original_title else{return}
-            print("Downloading \(String(describing: titlesItem))")
+            
+            DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.item]) { result in
+                switch result{
+                case .success():
+                    //update new download notification to DownloadViewController.
+                    NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
+                    print("downloaded \(titlesItem) to database.")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
         }
     }
-
     
     
 }
@@ -91,6 +101,7 @@ extension CollectionViewTableViewCell:UICollectionViewDataSource, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else{
             return UICollectionViewCell()
         }
+        
         
         
         guard let model = titles[indexPath.row].poster_path else {
