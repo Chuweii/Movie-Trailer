@@ -30,18 +30,10 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        
-        title = "Search"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
+                
         view.addSubview(searchTable)
         searchTable.dataSource = self
         searchTable.delegate = self
-        
-        navigationItem.searchController = searchController
-        navigationController?.navigationBar.tintColor = .white
-        
         searchController.searchResultsUpdater = self
         
         fetchSearchData()
@@ -105,7 +97,7 @@ extension SearchViewController:UITableViewDelegate, UITableViewDataSource{
             switch result {
             case .success(let videoElement):
                 DispatchQueue.main.async {
-                    let vc = TitlePreviewViewController()
+                    let vc = YoutubeWebViewController()
                     vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -148,7 +140,7 @@ extension SearchViewController:UISearchResultsUpdating, SearchResulCollectionVie
     
     func SearchResulCollectionViewCellDidTapItem(viewModel: TitlePreviewViewModel) {
         DispatchQueue.main.async {
-            let vc = TitlePreviewViewController()
+            let vc = YoutubeWebViewController()
             vc.configure(with: TitlePreviewViewModel(title: viewModel.title, youtubeView: viewModel.youtubeView, titleOverview: viewModel.titleOverview))
             self.navigationController?.pushViewController(vc, animated: true)
         }

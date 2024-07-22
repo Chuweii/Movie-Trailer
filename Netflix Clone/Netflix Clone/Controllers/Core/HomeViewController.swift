@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.setupRootView(RootViewBridge().getHomeView(delegate: self))
         
         view.backgroundColor = .systemBackground
         
@@ -51,9 +52,16 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
-        
     }
 
+}
+
+// MARK: - HomeViewModelDelegate
+
+extension HomeViewController: HomeViewModelDelegate {
+    func showErrorMessage(error: String) {
+        print(error)
+    }
 }
 
 //定義navigation bar上的物件
@@ -213,12 +221,11 @@ extension HomeViewController:UITableViewDelegate, UITableViewDataSource{
 
 extension HomeViewController:CollectionViewTableViewCellDelegate{
     func colectionviewCellDidTapCell(viewModel: TitlePreviewViewModel) {
-        
         DispatchQueue.main.async {
-            let vc = TitlePreviewViewController()
+            let vc = YoutubeWebViewController()
             vc.configure(with: viewModel)
+            vc.navigationController?.navigationBar.isHidden = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
 }

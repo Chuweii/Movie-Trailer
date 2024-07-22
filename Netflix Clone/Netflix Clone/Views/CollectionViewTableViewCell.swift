@@ -119,7 +119,7 @@ extension CollectionViewTableViewCell:UICollectionViewDataSource, UICollectionVi
         let title = titles[indexPath.row]
         guard let titleName = title.original_title ?? title.original_name else{return}
         
-        APICaller.shared.getYoutubeMovie(query:titleName + " trailer ") { [weak self] result in
+        APICaller.shared.getYoutubeMovie(query:titleName + "trailer") { [weak self] result in
             switch result{
             case .success(let videoElement):
                 guard let self = self else{return}

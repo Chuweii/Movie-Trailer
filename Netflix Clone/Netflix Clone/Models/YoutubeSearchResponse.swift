@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct YoutubrSerchResponse: Codable{
+struct YoutubeSearchResponse: Codable{
     let items:[VideoElement]
 }
 
