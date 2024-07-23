@@ -8,6 +8,7 @@
 import SwiftUI
 
 protocol HomeViewModelDelegate {
+    func pushYoutubeWebView(title: Title)
     func showErrorMessage(error: String)
 }
 
@@ -16,6 +17,7 @@ class HomeViewModel {
     // MARK: - Properties
 
     var bannerImage: String = ""
+    var bannerTitle: Title?
     var trendingMovies: [Title] = []
     var popularMovies: [Title] = []
     var trendingTV: [Title] = []
@@ -24,7 +26,7 @@ class HomeViewModel {
 
     // MARK: - Init
 
-    private let repository: MovieDBRepository
+    private let repository: MovieDBRepositoryProtocol
     private let delegate: HomeViewModelDelegate
 
     init(
@@ -34,7 +36,19 @@ class HomeViewModel {
         self.repository = repository
         self.delegate = delegate
     }
-
+    
+    // MARK: - Clicked Action
+    
+    func didClickedImageItem(title: Title) {
+        delegate.pushYoutubeWebView(title: title)
+    }
+    
+    func didLongPressImageItem(title: Title) {
+        downloadMovie(title)
+    }
+    
+    // MARK: - API Call
+    
     func onAppear() async {
         await withTaskGroup(of: Void.self) { group in
             group.addTask { await self.getTrendingMovies() }
@@ -47,10 +61,10 @@ class HomeViewModel {
 
     func getTrendingMovies() async {
         guard trendingMovies.isEmpty, bannerImage.isEmpty else { return }
-
         do {
             trendingMovies = try await repository.getTrendingMovies()
-            bannerImage = .movieDBImagePath(imagePath: trendingMovies.randomElement()?.poster_path ?? "")
+            bannerTitle = trendingMovies.randomElement()
+            bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
         } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
@@ -58,7 +72,6 @@ class HomeViewModel {
 
     func getPopularMovies() async {
         guard popularMovies.isEmpty else { return }
-
         do {
             popularMovies = try await repository.getPopularMovies()
         } catch {
@@ -68,7 +81,6 @@ class HomeViewModel {
 
     func getTrendingTV() async {
         guard trendingTV.isEmpty else { return }
-
         do {
             trendingTV = try await repository.getTrendingTV()
         } catch {
@@ -78,7 +90,6 @@ class HomeViewModel {
 
     func getUpComingMovies() async {
         guard upComingMovies.isEmpty else { return }
-
         do {
             upComingMovies = try await repository.getUpcomingMovies()
         } catch {
@@ -88,11 +99,24 @@ class HomeViewModel {
 
     func getTopRatedMovies() async {
         guard topRatedMovies.isEmpty else { return }
-
         do {
             topRatedMovies = try await repository.getTopRatedMovies()
         } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
+        }
+    }
+    
+    // MARK: - Methods
+    
+    func downloadMovie(_ title: Title) {
+        DataPersistenceManager.shared.downloadTitleWith(model: title) { result in
+            switch result{
+            case .success():
+                NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
+                print("downloaded \(title) to database.")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

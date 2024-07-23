@@ -7,68 +7,38 @@
 
 import UIKit
 import WebKit
+import Combine
 
 class YoutubeWebViewController: UIViewController {
-    var vm: YoutubeWebViewModel? = nil
+    // MARK: - Properties
     
-    private lazy var scrollView: UIScrollView = {
-        let sc: UIScrollView = .init()
-        sc.addSubview(webView)
-        sc.addSubview(titleLabel)
-        sc.addSubview(overviewLabel)
-        sc.addSubview(downloadButton)
-        return sc
-    }()
+    let viewModel: YoutubeWebViewModel
+    private var cancellables = Set<AnyCancellable>()
     
-    private let contentView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    // MARK: - Init
+
+    init(viewModel: YoutubeWebViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.numberOfLines = 0
-        label.sizeToFit()
-        label.text = "AAA"
-        return label
-    }()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    private let overviewLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.numberOfLines = 0
-        label.text = "asdljkfal;sdjf;lkajsd;flkja;sldjf;alkjsdf;lajs;dlfja;lsdkfj"
-        label.sizeToFit()
-        return label
-    }()
-    
-    private let downloadButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Download", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        return button
-    }()
-    
-    private let webView: WKWebView = {
-        let webView = WKWebView()
-        
-        return webView
-    }()
+    // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        
-        contentView.addSubview(webView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(overviewLabel)
-        contentView.addSubview(downloadButton)
+        setupView()
+        setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        Task {
+            await viewModel.getYoutubeMovie()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,12 +46,31 @@ class YoutubeWebViewController: UIViewController {
         autolayout()
     }
     
-    func configure(with viewModel: TitlePreviewViewModel) {
-        titleLabel.text = viewModel.title
-        overviewLabel.text = viewModel.titleOverview
-        
-        guard let url = URL(string: "https://www.youtube.com/embed/\(viewModel.youtubeView.id.videoId)") else { return }
+    // MARK: - Methods
+    
+    private func setupBindings() {
+        viewModel.$shouldLoadVideo
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.loadVideo()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func loadVideo() {
+        guard let videoId = viewModel.video?.id.videoId, let url = URL(string: .youtubeURLPath(videoId: videoId)) else { return }
         webView.load(URLRequest(url: url))
+    }
+    
+    private func setupView() {
+        view.backgroundColor = .black
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(webView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(overviewLabel)
+        contentView.addSubview(downloadButton)
     }
     
     private func autolayout() {
@@ -120,8 +109,44 @@ class YoutubeWebViewController: UIViewController {
             make.bottom.equalTo(contentView).offset(-padding)
         }
     }
+    
+    // MARK: - Subviews
+    
+    private lazy var scrollView: UIScrollView = .init()
+    
+    private let contentView: UIView = .init()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.text = viewModel.movieTitle
+        return label
+    }()
+    
+    private lazy var overviewLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.text = viewModel.overViewText
+        return label
+    }()
+    
+    private let downloadButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Download", for: .normal)
+        button.backgroundColor = .red
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    private let webView: WKWebView = {
+        let webView = WKWebView()
+        return webView
+    }()
 }
 
-#Preview {
-    YoutubeWebViewController()
-}

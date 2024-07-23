@@ -12,10 +12,14 @@ extension UIViewController {
     
     // MARK: - Properties
     
-    var topbarHeight: CGFloat {
+    var statusBarHeight: CGFloat {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let statusBarHeight = windowScene.statusBarManager?.statusBarFrame.size.height else { return 0 }
-        return statusBarHeight  + (self.navigationController?.navigationBar.frame.height ?? 0.0)
+        return statusBarHeight
+    }
+    
+    var topbarHeight: CGFloat {
+        return statusBarHeight  + (navigationController?.navigationBar.frame.height ?? 0.0)
     }
     
     /// Safe area top padding
@@ -36,32 +40,33 @@ extension UIViewController {
     
     // MARK: - Methods
     
-    func setupNavigationStyle(title: String, preferLargeTitle: Bool , background: UIColor) {
-        /// Title
-        self.navigationItem.title = title
-        self.navigationController?.navigationBar.prefersLargeTitles = preferLargeTitle
-        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+    func setupNavigationStyle(title: String, preferLargeTitle: Bool, background: UIColor) {
+        // Title
+        navigationItem.title = title
+        navigationController?.navigationBar.prefersLargeTitles = preferLargeTitle
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
 
-        /// Navigation Background Color
+        // Navigation Background Color
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.backgroundColor = background
         
-        /// NavigationBar
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        self.navigationController?.navigationBar.compactAppearance = appearance
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+        // NavigationBar
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
     
     func setupRootView(_ vc: UIViewController) {
-        self.view.addSubview(vc.view)
+        view.addSubview(vc.view)
         vc.view.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.left.right.equalToSuperview()
+            make.top.equalTo(statusBarHeight+40)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }

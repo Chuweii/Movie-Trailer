@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct HorizontalMoviesView: View {
+    // MARK: - Properties
     
     let title: String
     @Binding var images: [Title]
+    var action: (Title) -> Void
+    var longPressAction: (Title) -> Void
     
     private let spacing: CGFloat = 10
     private let itemSize: CGSize = .init(width: 140, height: 200)
-    var action: (String) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -27,7 +29,7 @@ struct HorizontalMoviesView: View {
                 LazyHStack(spacing: 0) {
                     ForEach(images, id: \.id) { title in
                         Button(action: {
-                            action(title.original_title ?? title.original_name ?? "")
+                            action(title)
                             
                         }, label: {
                             AsyncImage(url: .init(string: .movieDBImagePath(imagePath: title.poster_path ?? ""))) { phase in
@@ -43,6 +45,13 @@ struct HorizontalMoviesView: View {
                             }
                             .frame(width: itemSize.width, height: itemSize.height)
                         })
+                        .contextMenu {
+                            Button(action: {
+                                longPressAction(title)
+                            }) {
+                                Label("Download", systemImage: "arrow.down.circle")
+                            }
+                        }
                     }
                 }
                 .padding(spacing)

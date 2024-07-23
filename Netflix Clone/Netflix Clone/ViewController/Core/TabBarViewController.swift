@@ -94,17 +94,18 @@ class TabBarViewController: UIViewController {
             viewLayout(view: homeViewController.view)
             
         case .Upcoming:
-            setupNavigationStyle(title: "Coming Soon", preferLargeTitle: true, background: .black)
+            setupNavigationStyle(title: "Coming Soon", preferLargeTitle: false, background: .black)
             navigationItem.rightBarButtonItem = nil
+
             viewLayout(view: upcomingViewController.view)
 
         case .Search:
-            setupNavigationStyle(title: "Search", preferLargeTitle: true, background: .black)
+            setupNavigationStyle(title: "Search", preferLargeTitle: false, background: .black)
             navigationItem.rightBarButtonItem = nil
             viewLayout(view: searchViewController.view)
 
         case .Download:
-            setupNavigationStyle(title: "Download", preferLargeTitle: true, background: .black)
+            setupNavigationStyle(title: "Download", preferLargeTitle: false, background: .black)
             navigationItem.rightBarButtonItem = nil
             viewLayout(view: downloadViewController.view)
         }

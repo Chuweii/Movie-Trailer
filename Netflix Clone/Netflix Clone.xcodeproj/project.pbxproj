@@ -45,6 +45,10 @@
 		EF4560FA2C4B6A76008D38A9 /* MovieDBRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4560F92C4B6A76008D38A9 /* MovieDBRepository.swift */; };
 		EF4560FC2C4B6A91008D38A9 /* YoutubeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4560FB2C4B6A91008D38A9 /* YoutubeRepository.swift */; };
 		EF4D8C592C4E62DA0008605C /* YoutubeWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D8C582C4E62DA0008605C /* YoutubeWebViewModel.swift */; };
+		EF98B1962C4F456100806D64 /* UpcomingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1952C4F456100806D64 /* UpcomingView.swift */; };
+		EF98B1982C4F4C2400806D64 /* UpcomingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1972C4F4C2400806D64 /* UpcomingViewModel.swift */; };
+		EF98B19A2C4F4F4500806D64 /* CommonListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1992C4F4F4500806D64 /* CommonListRow.swift */; };
+		EF98B19F2C4F74DF00806D64 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B19E2C4F74DF00806D64 /* BaseViewController.swift */; };
 		EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */; };
 		EFC561902C4CDC3B0037DEE6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */; };
 		EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */; };
@@ -101,6 +105,10 @@
 		EF4560F92C4B6A76008D38A9 /* MovieDBRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBRepository.swift; sourceTree = "<group>"; };
 		EF4560FB2C4B6A91008D38A9 /* YoutubeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeRepository.swift; sourceTree = "<group>"; };
 		EF4D8C582C4E62DA0008605C /* YoutubeWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeWebViewModel.swift; sourceTree = "<group>"; };
+		EF98B1952C4F456100806D64 /* UpcomingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingView.swift; sourceTree = "<group>"; };
+		EF98B1972C4F4C2400806D64 /* UpcomingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewModel.swift; sourceTree = "<group>"; };
+		EF98B1992C4F4F4500806D64 /* CommonListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonListRow.swift; sourceTree = "<group>"; };
+		EF98B19E2C4F74DF00806D64 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EFC561882C4CCD830037DEE6 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelSpec.swift; sourceTree = "<group>"; };
 		EFC5618D2C4CD1AB0037DEE6 /* Netflix Clone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netflix Clone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,8 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				B2E28E7828DD961700BF3EF5 /* MainTabBarViewController.swift */,
-				B2E28E8928DD9A1500BF3EF5 /* HomeViewController.swift */,
-				B2E28E8B28DD9A5A00BF3EF5 /* UpcomingViewController.swift */,
 				B2E28E8D28DD9A9C00BF3EF5 /* SearchViewController.swift */,
 				B2E28E8F28DD9AD000BF3EF5 /* DownloadViewController.swift */,
 			);
@@ -335,6 +341,9 @@
 			isa = PBXGroup;
 			children = (
 				EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */,
+				B2E28E8928DD9A1500BF3EF5 /* HomeViewController.swift */,
+				B2E28E8B28DD9A5A00BF3EF5 /* UpcomingViewController.swift */,
+				EF98B19E2C4F74DF00806D64 /* BaseViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -361,6 +370,8 @@
 			children = (
 				EFC5619C2C4D4DE30037DEE6 /* HomeView.swift */,
 				EFC561A02C4DE64D0037DEE6 /* HomeViewModel.swift */,
+				EF98B1952C4F456100806D64 /* UpcomingView.swift */,
+				EF98B1972C4F4C2400806D64 /* UpcomingViewModel.swift */,
 			);
 			path = SwiftUIView;
 			sourceTree = "<group>";
@@ -370,6 +381,7 @@
 			children = (
 				EFC561A32C4DF0010037DEE6 /* BannerView.swift */,
 				EFC561A52C4E127C0037DEE6 /* HorizontalMoviesView.swift */,
+				EF98B1992C4F4F4500806D64 /* CommonListRow.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -501,6 +513,7 @@
 				B26D5BB229082A4C00FCA91A /* DataPersistenceManager.swift in Sources */,
 				EF4560EF2C4A1513008D38A9 /* APIManager.swift in Sources */,
 				B2E28E9828DDA6F000BF3EF5 /* CollectionViewTableViewCell.swift in Sources */,
+				EF98B19F2C4F74DF00806D64 /* BaseViewController.swift in Sources */,
 				EF4560FC2C4B6A91008D38A9 /* YoutubeRepository.swift in Sources */,
 				EFC5619F2C4DE3150037DEE6 /* UIViewController+.swift in Sources */,
 				EF4560FA2C4B6A76008D38A9 /* MovieDBRepository.swift in Sources */,
@@ -519,9 +532,12 @@
 				EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */,
 				B2E28EA928E3DF9600BF3EF5 /* Extension.swift in Sources */,
 				B2E28EE628E6E64600BF3EF5 /* TitlePreviewViewModel.swift in Sources */,
+				EF98B19A2C4F4F4500806D64 /* CommonListRow.swift in Sources */,
+				EF98B1982C4F4C2400806D64 /* UpcomingViewModel.swift in Sources */,
 				EF4D8C592C4E62DA0008605C /* YoutubeWebViewModel.swift in Sources */,
 				EF4560F42C4B66BB008D38A9 /* CustomError.swift in Sources */,
 				B2E28EA228E2DFC100BF3EF5 /* TitleCollectionViewCell.swift in Sources */,
+				EF98B1962C4F456100806D64 /* UpcomingView.swift in Sources */,
 				EF4560F72C4B69F1008D38A9 /* NetworkError.swift in Sources */,
 				EF4560F12C4A2025008D38A9 /* MoyaProvider.swift in Sources */,
 				B2E28EE428E6CDB100BF3EF5 /* YoutubeWebViewController.swift in Sources */,

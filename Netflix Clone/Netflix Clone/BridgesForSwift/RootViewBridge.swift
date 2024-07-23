@@ -15,4 +15,11 @@ class RootViewBridge {
                 HomeView(viewModel: .init(delegate: delegate))
         )
     }
+    
+    func getUpcomingView(delegate: UpcomingViewModelDelegate) -> UIViewController {
+        return UIHostingController(
+            rootView:
+                UpcomingView(viewModel: .init(delegate: delegate))
+        )
+    }
 }

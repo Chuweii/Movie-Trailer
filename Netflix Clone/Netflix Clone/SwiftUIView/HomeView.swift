@@ -13,26 +13,57 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                BannerView(imageURL: $viewModel.bannerImage)
-                
-                HorizontalMoviesView(title: "Movie Trending".uppercased(), images: $viewModel.trendingMovies) { movieTitle in
-                    
+                BannerView(imageURL: $viewModel.bannerImage) {
+                    guard let title = viewModel.bannerTitle else { return }
+                    viewModel.didClickedImageItem(title: title)
+                } downloadAction: {
+                    guard let title = viewModel.bannerTitle else { return }
+                    viewModel.downloadMovie(title)
                 }
                 
-                HorizontalMoviesView(title: "Popular".uppercased(), images: $viewModel.popularMovies) { movieTitle in
-                    
+                HorizontalMoviesView(
+                    title: "Movie Trending".uppercased(),
+                    images: $viewModel.trendingMovies
+                ) { title in
+                    viewModel.didClickedImageItem(title: title)
+                } longPressAction: { title in
+                    viewModel.didLongPressImageItem(title: title)
+                }
+                
+                HorizontalMoviesView(
+                    title: "Popular".uppercased(),
+                    images: $viewModel.popularMovies
+                ) { title in
+                    viewModel.didClickedImageItem(title: title)
+                } longPressAction: { title in
+                    viewModel.didLongPressImageItem(title: title)
                 }
 
-                HorizontalMoviesView(title: "TrendingTV".uppercased(), images: $viewModel.trendingTV) { movieTitle in
-                    
+                HorizontalMoviesView(
+                    title: "TrendingTV".uppercased(),
+                    images: $viewModel.trendingTV
+                ) { title in
+                    viewModel.didClickedImageItem(title: title)
+                } longPressAction: { title in
+                    viewModel.didLongPressImageItem(title: title)
                 }
 
-                HorizontalMoviesView(title: "Upcoming Movies".uppercased(), images: $viewModel.upComingMovies) { movieTitle in
-                    
+                HorizontalMoviesView(
+                    title: "Upcoming Movies".uppercased(),
+                    images: $viewModel.upComingMovies
+                ) { title in
+                    viewModel.didClickedImageItem(title: title)
+                } longPressAction: { title in
+                    viewModel.didLongPressImageItem(title: title)
                 }
 
-                HorizontalMoviesView(title: "Top Rated".uppercased(), images: $viewModel.topRatedMovies) { movieTitle in
-                    
+                HorizontalMoviesView(
+                    title: "Top Rated".uppercased(),
+                    images: $viewModel.topRatedMovies
+                ) { title in
+                    viewModel.didClickedImageItem(title: title)
+                } longPressAction: { title in
+                    viewModel.didLongPressImageItem(title: title)
                 }
             }
         }

@@ -64,4 +64,8 @@ extension String {
     static func movieDBImagePath(imagePath: String) -> String {
         "https://image.tmdb.org/t/p/w500\(imagePath)"
     }
+    
+    static func youtubeURLPath(videoId: String) -> String {
+        "https://www.youtube.com/embed/\(videoId)"
+    }
 }

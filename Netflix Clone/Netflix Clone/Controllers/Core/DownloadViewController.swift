@@ -22,15 +22,7 @@ class DownloadViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
-        
-        title = "Downloads"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
         setTableView()
-        
         fetchLocalStorageForDownload()
         
         //register notification listener to update new downloaded movie
@@ -41,7 +33,10 @@ class DownloadViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        downloadTable.frame = view.bounds
+        downloadTable.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.bottom.equalToSuperview()
+        }
     }
     
     
