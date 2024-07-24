@@ -37,13 +37,17 @@ class HomeViewModel {
         self.delegate = delegate
     }
     
-    // MARK: - Clicked Action
+    // MARK: - Click Action
     
-    func didClickedImageItem(title: Title) {
+    func didClickedImageItem(_ title: Title) {
         delegate.pushYoutubeWebView(title: title)
     }
     
-    func didLongPressImageItem(title: Title) {
+    func didClickedDownload(_ title: Title) {
+        downloadMovie(title)
+    }
+    
+    func didLongPressImageItem(_ title: Title) {
         downloadMovie(title)
     }
     
@@ -59,7 +63,7 @@ class HomeViewModel {
         }
     }
 
-    func getTrendingMovies() async {
+    private func getTrendingMovies() async {
         guard trendingMovies.isEmpty, bannerImage.isEmpty else { return }
         do {
             trendingMovies = try await repository.getTrendingMovies()
@@ -70,7 +74,7 @@ class HomeViewModel {
         }
     }
 
-    func getPopularMovies() async {
+    private func getPopularMovies() async {
         guard popularMovies.isEmpty else { return }
         do {
             popularMovies = try await repository.getPopularMovies()
@@ -79,7 +83,7 @@ class HomeViewModel {
         }
     }
 
-    func getTrendingTV() async {
+    private func getTrendingTV() async {
         guard trendingTV.isEmpty else { return }
         do {
             trendingTV = try await repository.getTrendingTV()
@@ -88,7 +92,7 @@ class HomeViewModel {
         }
     }
 
-    func getUpComingMovies() async {
+    private func getUpComingMovies() async {
         guard upComingMovies.isEmpty else { return }
         do {
             upComingMovies = try await repository.getUpcomingMovies()
@@ -97,7 +101,7 @@ class HomeViewModel {
         }
     }
 
-    func getTopRatedMovies() async {
+    private func getTopRatedMovies() async {
         guard topRatedMovies.isEmpty else { return }
         do {
             topRatedMovies = try await repository.getTopRatedMovies()
@@ -108,7 +112,7 @@ class HomeViewModel {
     
     // MARK: - Methods
     
-    func downloadMovie(_ title: Title) {
+    private func downloadMovie(_ title: Title) {
         DataPersistenceManager.shared.downloadTitleWith(model: title) { result in
             switch result{
             case .success():

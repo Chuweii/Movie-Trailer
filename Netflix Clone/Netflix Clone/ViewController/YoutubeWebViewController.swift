@@ -64,18 +64,17 @@ class YoutubeWebViewController: UIViewController {
     }
     
     private func setupView() {
+        navigationController?.navigationBar.tintColor = .white
         view.backgroundColor = .black
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(webView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(overviewLabel)
-        contentView.addSubview(downloadButton)
     }
     
     private func autolayout() {
         let padding: CGFloat = 20
-        let buttonSize: CGSize = .init(width: 120, height: 40)
         
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -99,14 +98,6 @@ class YoutubeWebViewController: UIViewController {
         overviewLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding)
             make.left.right.equalTo(contentView).inset(padding)
-        }
-        
-        downloadButton.snp.makeConstraints { make in
-            make.top.equalTo(overviewLabel.snp.bottom).offset(padding * 2)
-            make.centerX.equalTo(contentView)
-            make.width.equalTo(buttonSize.width)
-            make.height.equalTo(buttonSize.height)
-            make.bottom.equalTo(contentView).offset(-padding)
         }
     }
     
@@ -132,16 +123,6 @@ class YoutubeWebViewController: UIViewController {
         label.sizeToFit()
         label.text = viewModel.overViewText
         return label
-    }()
-    
-    private let downloadButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Download", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        return button
     }()
     
     private let webView: WKWebView = {

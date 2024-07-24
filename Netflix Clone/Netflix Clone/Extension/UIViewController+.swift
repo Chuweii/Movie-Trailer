@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 extension UIViewController {
-    
     // MARK: - Properties
     
     var statusBarHeight: CGFloat {
@@ -61,12 +61,12 @@ extension UIViewController {
         navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
     }
     
-    func setupRootView(_ vc: UIViewController) {
-        view.addSubview(vc.view)
-        vc.view.snp.makeConstraints { make in
-            make.top.equalTo(statusBarHeight+40)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
+    func bridgeSwiftUIView(_ swiftUIView: some View) {
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+        hostingController.view.frame = view.bounds
+        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        hostingController.didMove(toParent: self)
     }
 }

@@ -52,7 +52,7 @@ struct BannerView: View {
                             .foregroundStyle(.white)
                             .frame(width: buttonSize.width, height: buttonSize.height)
                             .background(
-                                Rectangle().fill(.red).opacity(0.7).cornerRadius(7)
+                                Rectangle().fill(.red.opacity(0.9)).opacity(0.7).cornerRadius(7)
                             )
                     })
                     
@@ -64,7 +64,7 @@ struct BannerView: View {
                             .foregroundStyle(.white)
                             .frame(width: buttonSize.width, height: buttonSize.height)
                             .background(
-                                Rectangle().fill(.red).opacity(0.7).cornerRadius(7)
+                                Rectangle().fill(.red.opacity(0.9)).opacity(0.7).cornerRadius(7)
                             )
                     })
                 }.padding(.bottom, padding)

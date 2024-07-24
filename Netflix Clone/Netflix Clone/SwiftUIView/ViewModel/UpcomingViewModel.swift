@@ -15,6 +15,9 @@ protocol UpcomingViewModelDelegate {
 @Observable
 class UpcomingViewModel {
     var titles: [Title] = []
+    
+    // MARK: - Init
+    
     let repository: MovieDBRepositoryProtocol
     let delegate: UpcomingViewModelDelegate
 
@@ -26,6 +29,8 @@ class UpcomingViewModel {
         self.delegate = delegate
     }
     
+    // MARK: - Methods
+    
     func didClickedItem(_ title: Title) {
         delegate.pushYoutubeWebView(title: title)
     }
@@ -34,7 +39,7 @@ class UpcomingViewModel {
         await getUpComingMovies()
     }
 
-    func getUpComingMovies() async {
+    private func getUpComingMovies() async {
         guard titles.isEmpty else { return }
         do {
             titles = try await repository.getUpcomingMovies()

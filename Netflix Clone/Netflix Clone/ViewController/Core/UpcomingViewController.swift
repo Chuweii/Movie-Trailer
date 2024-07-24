@@ -10,7 +10,7 @@ import UIKit
 class UpcomingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRootView(RootViewBridge().getUpcomingView(delegate: self))
+        bridgeSwiftUIView(UpcomingView(viewModel: .init(delegate: self)))
     }
 }
 
@@ -27,7 +27,7 @@ extension UpcomingViewController: UpcomingViewModelDelegate {
     }
     
     func showErrorMessage(error: String) {
-        printContent(error)
+        print(error)
     }
 }
 

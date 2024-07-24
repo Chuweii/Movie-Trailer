@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  SearchViewController.swift
 //  Netflix Clone
 //
 //  Created by Wei Chu on 2022/9/23.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bridgeSwiftUIView(HomeView(viewModel: .init(delegate: self)))
+        bridgeSwiftUIView(SearchView(viewModel: .init(delegate: self)))
     }
 }
 
-// MARK: - HomeViewModelDelegate
+// MARK: - SearchViewModelDelegate
 
-extension HomeViewController: HomeViewModelDelegate {
+extension SearchViewController: SearchViewModelDelegate {
     func pushYoutubeWebView(title: Title) {
         let vm: YoutubeWebViewModel = .init(
             movieTitle: title.original_title ?? "",

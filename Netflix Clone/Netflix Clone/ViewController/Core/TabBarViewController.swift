@@ -89,24 +89,19 @@ class TabBarViewController: UIViewController {
     private func updateChildViews(pageIndex: ViewControllerPage) {
         switch pageIndex {
         case .Home:
-            setupNavigationStyle(title: "Movie Trailer", preferLargeTitle: false, background: .black)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.circle.fill"), style: .plain, target: self, action: #selector(showProfile))
+            navigationController?.navigationBar.isHidden = true
             viewLayout(view: homeViewController.view)
             
         case .Upcoming:
-            setupNavigationStyle(title: "Coming Soon", preferLargeTitle: false, background: .black)
-            navigationItem.rightBarButtonItem = nil
-
+            navigationController?.navigationBar.isHidden = true
             viewLayout(view: upcomingViewController.view)
 
         case .Search:
-            setupNavigationStyle(title: "Search", preferLargeTitle: false, background: .black)
-            navigationItem.rightBarButtonItem = nil
+            navigationController?.navigationBar.isHidden = true
             viewLayout(view: searchViewController.view)
 
         case .Download:
-            setupNavigationStyle(title: "Download", preferLargeTitle: false, background: .black)
-            navigationItem.rightBarButtonItem = nil
+            navigationController?.navigationBar.isHidden = true
             viewLayout(view: downloadViewController.view)
         }
     }
@@ -125,7 +120,7 @@ class TabBarViewController: UIViewController {
         }
     }
 
-    /// View Controller's view autolayout setting
+    /// View controller's view autolayout setting
     private func viewLayout(view: UIView) {
         view.snp.makeConstraints { make in
             make.left.right.top.equalTo(self.view)
