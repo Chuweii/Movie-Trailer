@@ -8,19 +8,23 @@
 import Foundation
 
 class YoutubeWebViewModel {
+    // MARK: - Properties
+    
+    @Published var shouldLoadVideo: Bool = false
+    @Published var showErrorMessage: Bool = false
     var video: VideoElement?
+
+    // MARK: - Init
+    
     let movieTitle: String
     let overViewText: String
     let repository: YoutubeRepository
-    @Published var shouldLoadVideo: Bool = false
     
     init(
-        video: VideoElement? = nil,
         movieTitle: String,
         overViewText: String,
         repository: YoutubeRepository = .init()
     ) {
-        self.video = video
         self.movieTitle = movieTitle
         self.overViewText = overViewText
         self.repository = repository

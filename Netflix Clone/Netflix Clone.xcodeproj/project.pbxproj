@@ -41,6 +41,7 @@
 		EF98B1A72C4FB5A100806D64 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1A62C4FB5A100806D64 /* SearchViewModel.swift */; };
 		EF98B1AB2C5094EB00806D64 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1AA2C5094EB00806D64 /* DownloadView.swift */; };
 		EF98B1AD2C5094F800806D64 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1AC2C5094F800806D64 /* DownloadViewModel.swift */; };
+		EF98B1B32C50B9BE00806D64 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1B22C50B9BE00806D64 /* CustomAlert.swift */; };
 		EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */; };
 		EFC561902C4CDC3B0037DEE6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */; };
 		EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */; };
@@ -94,6 +95,7 @@
 		EF98B1A62C4FB5A100806D64 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EF98B1AA2C5094EB00806D64 /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		EF98B1AC2C5094F800806D64 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
+		EF98B1B22C50B9BE00806D64 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		EFC561882C4CCD830037DEE6 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelSpec.swift; sourceTree = "<group>"; };
 		EFC5618D2C4CD1AB0037DEE6 /* Netflix Clone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netflix Clone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +277,7 @@
 			children = (
 				EFC561A22C4DEBA60037DEE6 /* SwiftUI */,
 				EFC561952C4CDD5A0037DEE6 /* TabBarItem */,
+				EF98B1B22C50B9BE00806D64 /* CustomAlert.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -383,7 +386,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					B2E28E7028DD961700BF3EF5 = {
 						CreatedOnToolsVersion = 13.3;
@@ -478,6 +481,7 @@
 				B2E28EE428E6CDB100BF3EF5 /* YoutubeWebViewController.swift in Sources */,
 				B2E28E9E28E29B9F00BF3EF5 /* Title.swift in Sources */,
 				B2E28E8A28DD9A1500BF3EF5 /* HomeViewController.swift in Sources */,
+				EF98B1B32C50B9BE00806D64 /* CustomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +528,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -584,6 +589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

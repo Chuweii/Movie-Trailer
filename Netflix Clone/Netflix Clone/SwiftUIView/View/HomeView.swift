@@ -16,7 +16,7 @@ struct HomeView: View {
                 VStack(spacing: 0) {
                     BannerView(imageURL: $viewModel.bannerImage) {
                         guard let title = viewModel.bannerTitle else { return }
-                        viewModel.didClickedImageItem(title)
+                        viewModel.didClickedPlay(title)
                     } downloadAction: {
                         guard let title = viewModel.bannerTitle else { return }
                         viewModel.didClickedDownload(title)
@@ -69,6 +69,17 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Movie Trailer")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        print("profile...")
+                    } label: {
+                        Image(systemName: "person.crop.circle")
+                            .foregroundColor(.white)
+                    }
+
+                }
+            }
             .background(
                 Color.black
             )

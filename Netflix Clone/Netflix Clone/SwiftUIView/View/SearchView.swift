@@ -9,18 +9,26 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var viewModel: SearchViewModel
-    
+    private let spacing: CGFloat = 5
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
+                LazyVGrid(
+                    columns: [
+                        GridItem(.flexible(), spacing: spacing),
+                        GridItem(.flexible(), spacing: spacing),
+                        GridItem(.flexible(), spacing: spacing)
+                    ],
+                    spacing: spacing
+                ) {
                     ForEach(viewModel.titles, id: \.id) { title in
                         GridItemView(title: title) { title in
                             viewModel.didClickedItem(title)
                         }
                     }
                 }
-                .padding()
+                .padding(10)
             }
             .navigationTitle("Search")
             .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer)
@@ -34,11 +42,10 @@ struct SearchView: View {
     }
 }
 
-
 struct GridItemView: View {
     @State var title: Title
     var action: (Title) -> Void
-    private let itemHeight: CGFloat = 180
+    private let itemHeight: CGFloat = 200
 
     var body: some View {
         AsyncImage(url: .init(string: .movieDBImagePath(imagePath: title.poster_path ?? ""))) { phase in

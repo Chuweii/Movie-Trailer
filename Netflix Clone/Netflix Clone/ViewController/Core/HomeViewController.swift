@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewModelDelegate {
     func pushYoutubeWebView(title: Title) {
         let vm: YoutubeWebViewModel = .init(
-            movieTitle: title.original_title ?? "",
+            movieTitle: title.original_title ?? title.original_name ?? "",
             overViewText: title.overview ?? ""
         )
         let vc = YoutubeWebViewController(viewModel: vm)
@@ -27,6 +27,10 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     func showErrorMessage(error: String) {
-        print(error)
+        showAlert(message: error)
+    }
+    
+    func showToast(_ message: String) {
+        showToast(message: message)
     }
 }

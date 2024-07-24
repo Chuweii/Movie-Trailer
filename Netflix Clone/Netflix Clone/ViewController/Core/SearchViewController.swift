@@ -27,6 +27,6 @@ extension SearchViewController: SearchViewModelDelegate {
     }
     
     func showErrorMessage(error: String) {
-        print(error)
+        showAlert(message: error)
     }
 }

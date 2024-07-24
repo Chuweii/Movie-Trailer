@@ -9,10 +9,21 @@ import SwiftUI
 
 struct CommonListRow: View {
     let title: Title
+    let showPlayIcon: Bool
     let action: (Title) -> Void
     
     let imageSize: CGSize = .init(width: 100, height: 140)
     let iconSize: CGFloat = 30
+    
+    init(
+        title: Title,
+        showPlayIcon: Bool = true,
+        action: @escaping (Title) -> Void
+    ) {
+        self.title = title
+        self.showPlayIcon = showPlayIcon
+        self.action = action
+    }
     
     var body: some View {
         HStack(spacing: 0) {
@@ -28,7 +39,7 @@ struct CommonListRow: View {
                 }
             }.frame(width: imageSize.width, height: imageSize.height)
             
-            Text(title.original_title ?? "")
+            Text(title.original_title ?? title.original_name ?? "")
                 .font(.system(size: 18))
                 .padding(.leading, 10)
             
@@ -38,6 +49,7 @@ struct CommonListRow: View {
                 .resizable()
                 .frame(width: iconSize, height: iconSize)
                 .padding(.trailing, 20)
+                .opacity(showPlayIcon ? 1 : 0)
         }
         .contentShape(.rect)
         .onTapGesture {

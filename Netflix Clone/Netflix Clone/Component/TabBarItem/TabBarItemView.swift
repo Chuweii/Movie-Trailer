@@ -17,16 +17,12 @@ class TabBarItemView: UIView {
     
     // MARK: - Properties
 
-    /// init properties
+    /// Init properties
     private let image: String
     private let title: String
-    /// delegate
     weak var delegate: TabBarItemViewDelegate?
-    /// 被點擊的 item 顏色
     private let selectedColor: UIColor = .white
-    /// 沒被點擊的 item 顏色
     private let normalColor: UIColor = .lightGray
-    /// 現在哪個item被點擊
     public var isSelected: Bool = false {
         willSet {
             updateUI(isSelected: newValue)
@@ -61,9 +57,8 @@ class TabBarItemView: UIView {
     
     // MARK: - UIElements
     
-    /// 裝icon以及title的view (方便讓兩個元件置中在TabBarItemView上)
     private let containerView = UIView()
-    /// 底部tab bar item icon
+    
     private lazy var iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -71,7 +66,7 @@ class TabBarItemView: UIView {
         iv.tintColor = normalColor
         return iv
     }()
-    /// 底部tab bar item title
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)

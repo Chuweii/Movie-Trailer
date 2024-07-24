@@ -27,7 +27,7 @@ extension UpcomingViewController: UpcomingViewModelDelegate {
     }
     
     func showErrorMessage(error: String) {
-        print(error)
+        showAlert(message: error)
     }
 }
 

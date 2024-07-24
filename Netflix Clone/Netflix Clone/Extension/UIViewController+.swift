@@ -69,4 +69,40 @@ extension UIViewController {
         hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         hostingController.didMove(toParent: self)
     }
+    
+    /// Show Custom Alert View
+    /// - Parameters:
+    ///   - message: alert message
+    ///   - title: alert title
+    func showAlert(title: String? = nil, message: String) {
+        let alertView = CustomAlert(type: .alert, title: title, message: message)
+        alertView.alpha = 0
+        
+        view.addSubview(alertView)
+        alertView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            alertView.alpha = 1
+        }
+    }
+    
+    /// Show Custom Toast View
+    /// - Parameter message: toast message
+    func showToast(message: String) {
+        let toastView = CustomAlert(type: .toast, message: message) { view in
+            view.dismissWithAnimate(withDuration: 0.3)
+        }
+        toastView.alpha = 0
+        
+        view.addSubview(toastView)
+        toastView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            toastView.alpha = 1
+        }
+    }
 }

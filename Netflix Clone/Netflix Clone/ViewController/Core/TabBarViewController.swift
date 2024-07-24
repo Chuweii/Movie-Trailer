@@ -108,8 +108,6 @@ class TabBarViewController: UIViewController {
     
     // MARK: - Methods
 
-    /// Tab Item Animate
-    /// - Parameter view: 被點擊的 Tab Item
     private func tabItemAnimate(_ view: TabBarItemView) {
         UIView.animate(withDuration: 0.2) {
             let transformSize = CGAffineTransform(scaleX: 2, y: 2)

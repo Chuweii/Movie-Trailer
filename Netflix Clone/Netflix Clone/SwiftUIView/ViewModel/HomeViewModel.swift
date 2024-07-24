@@ -10,6 +10,7 @@ import SwiftUI
 protocol HomeViewModelDelegate {
     func pushYoutubeWebView(title: Title)
     func showErrorMessage(error: String)
+    func showToast(_ message: String)
 }
 
 @Observable
@@ -43,6 +44,10 @@ class HomeViewModel {
         delegate.pushYoutubeWebView(title: title)
     }
     
+    func didClickedPlay(_ title: Title) {
+        delegate.pushYoutubeWebView(title: title)
+    }
+    
     func didClickedDownload(_ title: Title) {
         downloadMovie(title)
     }
@@ -67,7 +72,7 @@ class HomeViewModel {
         guard trendingMovies.isEmpty, bannerImage.isEmpty else { return }
         do {
             trendingMovies = try await repository.getTrendingMovies()
-            bannerTitle = trendingMovies.randomElement()
+            bannerTitle = trendingMovies.filter({ $0.poster_path != nil }).randomElement()
             bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
         } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -117,9 +122,10 @@ class HomeViewModel {
             switch result{
             case .success():
                 NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
-                print("downloaded \(title) to database.")
+                self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
+
             case .failure(let error):
-                print(error.localizedDescription)
+                self.delegate.showErrorMessage(error: error.localizedDescription)
             }
         }
     }

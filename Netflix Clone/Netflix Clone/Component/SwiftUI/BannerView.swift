@@ -9,15 +9,15 @@ import SwiftUI
 
 struct BannerView: View {
     // MARK: - Properties
-    
+
     @Binding var imageURL: String
     let imageHeight: CGFloat = 450
     let playAction: () -> Void
     let downloadAction: () -> Void
-    
+
     let buttonSize: CGSize = .init(width: 100, height: 30)
     let padding: CGFloat = 30
-    
+
     var body: some View {
         ZStack {
             Color.black
@@ -39,34 +39,18 @@ struct BannerView: View {
                 startPoint: .top,
                 endPoint: .bottom
             )
-            
+
             VStack {
                 Spacer()
-                
+
                 HStack(spacing: padding) {
-                    Button(action: {
+                    button(title: "Play") {
                         playAction()
-                        
-                    }, label: {
-                        Text("Play")
-                            .foregroundStyle(.white)
-                            .frame(width: buttonSize.width, height: buttonSize.height)
-                            .background(
-                                Rectangle().fill(.red.opacity(0.9)).opacity(0.7).cornerRadius(7)
-                            )
-                    })
-                    
-                    Button(action: {
+                    }
+
+                    button(title: "Download") {
                         downloadAction()
-                        
-                    }, label: {
-                        Text("Download")
-                            .foregroundStyle(.white)
-                            .frame(width: buttonSize.width, height: buttonSize.height)
-                            .background(
-                                Rectangle().fill(.red.opacity(0.9)).opacity(0.7).cornerRadius(7)
-                            )
-                    })
+                    }
                 }.padding(.bottom, padding)
             }
         }
@@ -74,7 +58,33 @@ struct BannerView: View {
     }
 }
 
+extension BannerView {
+    @ViewBuilder
+    func button(title: String, action: @escaping () -> Void) -> some View {
+        let cornerRadius: CGFloat = 7
+
+        Button(action: {
+            action()
+
+        }, label: {
+            Text(title)
+                .foregroundStyle(.white)
+                .frame(width: buttonSize.width, height: buttonSize.height)
+                .background(
+                    Rectangle().fill(.white.opacity(0.1)).cornerRadius(cornerRadius)
+                )
+        })
+        .overlay(
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(
+                    .white,
+                    lineWidth: 1
+                )
+        )
+    }
+}
+
 #Preview {
     @State var imageURL: String = "https://media.gq.com.tw/photos/5fa2907c4a1c25519349c58c/16:9/w_2560%2Cc_limit/GettyImages-454008386.jpg"
-    return BannerView(imageURL: $imageURL) {} downloadAction: {}
+    return BannerView(imageURL: $imageURL) { } downloadAction: { }
 }

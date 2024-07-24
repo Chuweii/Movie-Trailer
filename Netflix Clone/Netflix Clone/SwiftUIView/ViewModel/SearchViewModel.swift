@@ -20,7 +20,7 @@ class SearchViewModel: ObservableObject {
 
     @Published var titles: [Title] = []
     @Published var searchText: String = ""
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellables: Set<AnyCancellable> = .init()
 
     // MARK: - Init
 

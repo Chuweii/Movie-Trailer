@@ -36,8 +36,8 @@ class DataPersistenceManager{
         }
     }
     
-    
-    func fetchingTitleFromDataBase(completion: @escaping (Result<[Title], Error>) -> Void) {
+    @MainActor
+    func fetchingTitleFromDataBase(completion: @escaping (Result<[Title], Error>) -> Void) async {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -53,7 +53,8 @@ class DataPersistenceManager{
         }
     }
     
-    func deleteTitle(with title: Title, completion: @escaping (Result<Void, Error>) -> Void) {
+    @MainActor
+    func deleteTitle(with title: Title, completion: @escaping (Result<Void, Error>) -> Void) async {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }

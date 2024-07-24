@@ -13,8 +13,8 @@ class YoutubeWebViewController: UIViewController {
     // MARK: - Properties
     
     let viewModel: YoutubeWebViewModel
-    private var cancellables = Set<AnyCancellable>()
-    
+    private var cancellables: Set<AnyCancellable> = .init()
+
     // MARK: - Init
 
     init(viewModel: YoutubeWebViewModel) {
@@ -31,7 +31,7 @@ class YoutubeWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupBindings()
+        onChange()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +48,7 @@ class YoutubeWebViewController: UIViewController {
     
     // MARK: - Methods
     
-    private func setupBindings() {
+    private func onChange() {
         viewModel.$shouldLoadVideo
             .filter { $0 }
             .receive(on: DispatchQueue.main)
@@ -97,7 +97,7 @@ class YoutubeWebViewController: UIViewController {
         
         overviewLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding)
-            make.left.right.equalTo(contentView).inset(padding)
+            make.left.right.bottom.equalTo(contentView).inset(padding)
         }
     }
     
