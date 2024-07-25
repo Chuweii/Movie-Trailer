@@ -16,7 +16,7 @@ class DownloadViewController: UIViewController {
 
 extension DownloadViewController: DownloadViewModelDelegate {
     func showErrorMessage(error: String) {
-        print(error)
+        showAlert(message: error)
     }
 }
 
