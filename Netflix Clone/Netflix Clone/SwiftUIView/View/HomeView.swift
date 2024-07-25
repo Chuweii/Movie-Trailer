@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Bindable var viewModel: HomeViewModel
-    
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
@@ -21,7 +21,7 @@ struct HomeView: View {
                         guard let title = viewModel.bannerTitle else { return }
                         viewModel.didClickedDownload(title)
                     }
-                    
+
                     HorizontalMoviesView(
                         title: "Movie Trending".uppercased(),
                         images: $viewModel.trendingMovies
@@ -30,7 +30,7 @@ struct HomeView: View {
                     } longPressAction: { title in
                         viewModel.didLongPressImageItem(title)
                     }
-                    
+
                     HorizontalMoviesView(
                         title: "Popular".uppercased(),
                         images: $viewModel.popularMovies
@@ -71,13 +71,7 @@ struct HomeView: View {
             .navigationTitle("Movie Trailer")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        print("profile...")
-                    } label: {
-                        Image(systemName: "person.crop.circle")
-                            .foregroundColor(.white)
-                    }
-
+                    profileBarItem
                 }
             }
             .background(
@@ -88,6 +82,18 @@ struct HomeView: View {
                     await viewModel.onAppear()
                 }
             }
+        }
+    }
+}
+
+extension HomeView {
+    @ViewBuilder
+    var profileBarItem: some View {
+        Button {
+            print("profile...")
+        } label: {
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(.white)
         }
     }
 }

@@ -11,14 +11,14 @@ class YoutubeWebViewModel {
     // MARK: - Properties
     
     @Published var shouldLoadVideo: Bool = false
-    @Published var showErrorMessage: Bool = false
+    @Published var errorMessage: String? = nil
     var video: VideoElement?
 
     // MARK: - Init
     
     let movieTitle: String
     let overViewText: String
-    let repository: YoutubeRepository
+    let repository: YoutubeRepositoryProtocol
     
     init(
         movieTitle: String,
@@ -35,7 +35,7 @@ class YoutubeWebViewModel {
             video = try await repository.getYoutubeMovie(query: "\(movieTitle) trailer ")
             shouldLoadVideo = true
         } catch {
-            print(error.localizedDescription)
+            errorMessage = error.localizedDescription
         }
     }
 }

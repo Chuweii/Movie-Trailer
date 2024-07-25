@@ -56,6 +56,14 @@ class YoutubeWebViewController: UIViewController {
                 self?.loadVideo()
             }
             .store(in: &cancellables)
+        
+        viewModel.$errorMessage
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.showAlert(message: $0)
+            }
+            .store(in: &cancellables)
     }
     
     private func loadVideo() {

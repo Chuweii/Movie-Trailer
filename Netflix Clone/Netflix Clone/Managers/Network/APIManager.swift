@@ -22,7 +22,6 @@ extension APIManager: TargetType {
     enum APIURL{
         static let APIKey = "697d439ac993538da4e3e60b54e762cd"
         static let baseURL = "https://api.themoviedb.org"
-        
         static let youtubeAPIKey = "AIzaSyD6vdYFpw7mVD0013YaJV8XG1qHcjHm63E"
         static let baseYoutubeURL = "https://youtube.googleapis.com/youtube/v3/search"
     }

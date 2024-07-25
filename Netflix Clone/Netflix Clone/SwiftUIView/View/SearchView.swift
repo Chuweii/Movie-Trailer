@@ -28,7 +28,8 @@ struct SearchView: View {
                         }
                     }
                 }
-                .padding(10)
+                .padding(.horizontal, spacing)
+                .padding(.vertical, spacing * 2)
             }
             .navigationTitle("Search")
             .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer)
