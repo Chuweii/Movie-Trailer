@@ -31,7 +31,7 @@ class HomeViewModel {
     private let delegate: HomeViewModelDelegate
 
     init(
-        repository: MovieDBRepository = .init(),
+        repository: MovieDBRepositoryProtocol = MovieDBRepository(),
         delegate: HomeViewModelDelegate
     ) {
         self.repository = repository
@@ -48,12 +48,12 @@ class HomeViewModel {
         delegate.pushYoutubeWebView(title: title)
     }
     
-    func didClickedDownload(_ title: Title) {
-        downloadMovie(title)
+    func didClickedDownload(_ title: Title) async {
+        await downloadMovie(title)
     }
     
-    func didLongPressImageItem(_ title: Title) {
-        downloadMovie(title)
+    func didLongPressImageItem(_ title: Title) async {
+        await downloadMovie(title)
     }
     
     // MARK: - API Call
@@ -117,8 +117,8 @@ class HomeViewModel {
     
     // MARK: - Methods
     
-    private func downloadMovie(_ title: Title) {
-        DataPersistenceManager.shared.downloadTitleWith(model: title) { result in
+    private func downloadMovie(_ title: Title) async {
+        await DataPersistenceManager.shared.downloadTitleWith(model: title) { result in
             switch result{
             case .success():
                 NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)

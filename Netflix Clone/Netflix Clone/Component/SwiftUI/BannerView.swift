@@ -13,7 +13,7 @@ struct BannerView: View {
     @Binding var imageURL: String
     let imageHeight: CGFloat = 450
     let playAction: () -> Void
-    let downloadAction: () -> Void
+    let downloadAction: (() async -> Void)
 
     let buttonSize: CGSize = .init(width: 100, height: 30)
     let padding: CGFloat = 30
@@ -28,7 +28,10 @@ struct BannerView: View {
                     image
                         .resizable()
                         .scaledToFit()
-
+                case .empty:
+                    Image("empty_image", bundle: nil)
+                        .resizable()
+                        .scaledToFit()
                 default:
                     ProgressView()
                 }
@@ -49,7 +52,9 @@ struct BannerView: View {
                     }
 
                     button(title: "Download") {
-                        downloadAction()
+                        Task {
+                            await downloadAction()
+                        }
                     }
                 }.padding(.bottom, padding)
             }

@@ -19,7 +19,7 @@ struct HomeView: View {
                         viewModel.didClickedPlay(title)
                     } downloadAction: {
                         guard let title = viewModel.bannerTitle else { return }
-                        viewModel.didClickedDownload(title)
+                        await viewModel.didClickedDownload(title)
                     }
 
                     HorizontalMoviesView(
@@ -28,7 +28,7 @@ struct HomeView: View {
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
-                        viewModel.didLongPressImageItem(title)
+                        await viewModel.didLongPressImageItem(title)
                     }
 
                     HorizontalMoviesView(
@@ -37,7 +37,7 @@ struct HomeView: View {
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
-                        viewModel.didLongPressImageItem(title)
+                        await viewModel.didLongPressImageItem(title)
                     }
 
                     HorizontalMoviesView(
@@ -46,7 +46,7 @@ struct HomeView: View {
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
-                        viewModel.didLongPressImageItem(title)
+                        await viewModel.didLongPressImageItem(title)
                     }
 
                     HorizontalMoviesView(
@@ -55,7 +55,7 @@ struct HomeView: View {
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
-                        viewModel.didLongPressImageItem(title)
+                        await viewModel.didLongPressImageItem(title)
                     }
 
                     HorizontalMoviesView(
@@ -64,7 +64,7 @@ struct HomeView: View {
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
-                        viewModel.didLongPressImageItem(title)
+                        await viewModel.didLongPressImageItem(title)
                     }
                 }
             }

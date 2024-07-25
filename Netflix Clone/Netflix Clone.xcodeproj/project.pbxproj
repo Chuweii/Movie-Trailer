@@ -42,6 +42,8 @@
 		EF98B1AB2C5094EB00806D64 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1AA2C5094EB00806D64 /* DownloadView.swift */; };
 		EF98B1AD2C5094F800806D64 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1AC2C5094F800806D64 /* DownloadViewModel.swift */; };
 		EF98B1B32C50B9BE00806D64 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1B22C50B9BE00806D64 /* CustomAlert.swift */; };
+		EF98B1B92C5205C300806D64 /* FakeMovieDBRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1B82C5205C300806D64 /* FakeMovieDBRepository.swift */; };
+		EF98B1BB2C52084900806D64 /* MockHomeViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF98B1BA2C52084900806D64 /* MockHomeViewModelDelegate.swift */; };
 		EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */; };
 		EFC561902C4CDC3B0037DEE6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */; };
 		EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */; };
@@ -96,6 +98,8 @@
 		EF98B1AA2C5094EB00806D64 /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		EF98B1AC2C5094F800806D64 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
 		EF98B1B22C50B9BE00806D64 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		EF98B1B82C5205C300806D64 /* FakeMovieDBRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMovieDBRepository.swift; sourceTree = "<group>"; };
+		EF98B1BA2C52084900806D64 /* MockHomeViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeViewModelDelegate.swift; sourceTree = "<group>"; };
 		EFC561882C4CCD830037DEE6 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelSpec.swift; sourceTree = "<group>"; };
 		EFC5618D2C4CD1AB0037DEE6 /* Netflix Clone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netflix Clone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,8 +205,10 @@
 		EF4560D52C4A0898008D38A9 /* Netflix Clone Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EF4560D62C4A0898008D38A9 /* Netflix_Clone_Tests.swift */,
-				EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */,
+				EF98B1B42C52048600806D64 /* ViewModel */,
+				EF98B1B62C5204A700806D64 /* Delegate */,
+				EF98B1B52C52049300806D64 /* Repository */,
+				EF98B1B72C52057D00806D64 /* Others */,
 			);
 			path = "Netflix Clone Tests";
 			sourceTree = "<group>";
@@ -270,6 +276,38 @@
 				EF98B1AC2C5094F800806D64 /* DownloadViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EF98B1B42C52048600806D64 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EF98B1B52C52049300806D64 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				EF98B1B82C5205C300806D64 /* FakeMovieDBRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		EF98B1B62C5204A700806D64 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				EF98B1BA2C52084900806D64 /* MockHomeViewModelDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		EF98B1B72C52057D00806D64 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				EF4560D62C4A0898008D38A9 /* Netflix_Clone_Tests.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		EFC5618E2C4CDC1B0037DEE6 /* Component */ = {
@@ -489,6 +527,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF98B1BB2C52084900806D64 /* MockHomeViewModelDelegate.swift in Sources */,
+				EF98B1B92C5205C300806D64 /* FakeMovieDBRepository.swift in Sources */,
 				EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */,
 				EF4560D72C4A0898008D38A9 /* Netflix_Clone_Tests.swift in Sources */,
 			);

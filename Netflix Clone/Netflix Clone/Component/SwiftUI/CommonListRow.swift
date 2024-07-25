@@ -33,7 +33,6 @@ struct CommonListRow: View {
                     image
                         .resizable()
                         .scaledToFit()
-                    
                 default:
                     ProgressView()
                 }

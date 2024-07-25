@@ -16,11 +16,17 @@ enum DatabaseError:Error {
     case failedToGetAppDelegate
 }
 
-class DataPersistenceManager{
-    
+protocol DataPersistenceDelegate {
+    func downloadTitleWith(model: Title, completion: @escaping (Result<Void, Error>) -> Void) async
+    func fetchingTitleFromDataBase(completion: @escaping (Result<[Title], Error>) -> Void) async
+    func deleteTitle(with title: Title, completion: @escaping (Result<Void, Error>) -> Void) async
+}
+ 
+class DataPersistenceManager: DataPersistenceDelegate {
     static let shared = DataPersistenceManager()
     
-    func downloadTitleWith(model: Title, completion: @escaping (Result<Void, Error>) -> Void) {
+    @MainActor
+    func downloadTitleWith(model: Title, completion: @escaping (Result<Void, Error>) -> Void) async {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             completion(.failure(DatabaseError.failedToGetAppDelegate))
             return

@@ -13,7 +13,7 @@ struct HorizontalMoviesView: View {
     let title: String
     @Binding var images: [Title]
     var action: (Title) -> Void
-    var longPressAction: (Title) -> Void
+    var longPressAction: ((Title) async -> Void)
     
     private let spacing: CGFloat = 10
     private let itemSize: CGSize = .init(width: 140, height: 200)
@@ -38,16 +38,18 @@ struct HorizontalMoviesView: View {
                                     image
                                         .resizable()
                                         .scaledToFit()
-                                    
                                 default:
                                     ProgressView()
                                 }
                             }
                             .frame(width: itemSize.width, height: itemSize.height)
+
                         })
                         .contextMenu {
                             Button(action: {
-                                longPressAction(title)
+                                Task {
+                                    await longPressAction(title)
+                                }
                             }) {
                                 Label("Download", systemImage: "arrow.down.circle")
                             }
