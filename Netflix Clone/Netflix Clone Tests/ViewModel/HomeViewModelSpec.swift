@@ -20,7 +20,7 @@ class HomeViewModelSpec: AsyncSpec {
         beforeEach {
             delegate = MockHomeViewModelDelegate()
             repository = FakeMovieDBRepository()
-            viewModel = HomeViewModel(repository: repository, delegate: delegate)
+            viewModel = HomeViewModel(movieDBRepository: repository, delegate: delegate)
         }
         
         describe("get trending movies") {

@@ -27,17 +27,17 @@ class HomeViewModel {
 
     // MARK: - Init
 
-    private let repository: MovieDBRepositoryProtocol
-    private let dataRepository: DataPersistenceRepositoryProtocol
+    private let movieDBRepository: MovieDBRepositoryProtocol
+    private let dataPersistenceRepository: DataPersistenceRepositoryProtocol
     private let delegate: HomeViewModelDelegate
 
     init(
-        repository: MovieDBRepositoryProtocol = MovieDBRepository(),
-        dataRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
+        movieDBRepository: MovieDBRepositoryProtocol = MovieDBRepository(),
+        dataPersistenceRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
         delegate: HomeViewModelDelegate
     ) {
-        self.repository = repository
-        self.dataRepository = dataRepository
+        self.movieDBRepository = movieDBRepository
+        self.dataPersistenceRepository = dataPersistenceRepository
         self.delegate = delegate
     }
     
@@ -74,7 +74,7 @@ class HomeViewModel {
     private func getTrendingMovies() async {
         guard trendingMovies.isEmpty else { return }
         do {
-            trendingMovies = try await repository.getTrendingMovies()
+            trendingMovies = try await movieDBRepository.getTrendingMovies()
             bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
             bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
         } 
@@ -86,7 +86,7 @@ class HomeViewModel {
     private func getPopularMovies() async {
         guard popularMovies.isEmpty else { return }
         do {
-            popularMovies = try await repository.getPopularMovies()
+            popularMovies = try await movieDBRepository.getPopularMovies()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -96,7 +96,7 @@ class HomeViewModel {
     private func getTrendingTV() async {
         guard trendingTV.isEmpty else { return }
         do {
-            trendingTV = try await repository.getTrendingTV()
+            trendingTV = try await movieDBRepository.getTrendingTV()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -106,7 +106,7 @@ class HomeViewModel {
     private func getUpComingMovies() async {
         guard upComingMovies.isEmpty else { return }
         do {
-            upComingMovies = try await repository.getUpcomingMovies()
+            upComingMovies = try await movieDBRepository.getUpcomingMovies()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -116,7 +116,7 @@ class HomeViewModel {
     private func getTopRatedMovies() async {
         guard topRatedMovies.isEmpty else { return }
         do {
-            topRatedMovies = try await repository.getTopRatedMovies()
+            topRatedMovies = try await movieDBRepository.getTopRatedMovies()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -127,7 +127,7 @@ class HomeViewModel {
     
     private func downloadMovie(_ title: Title) async {
         do {
-            try await dataRepository.downloadTitleWith(model: title)
+            try await dataPersistenceRepository.downloadTitleWith(model: title)
             NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
             self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
         } 

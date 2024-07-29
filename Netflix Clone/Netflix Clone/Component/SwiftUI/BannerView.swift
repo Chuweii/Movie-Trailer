@@ -43,21 +43,7 @@ struct BannerView: View {
                 endPoint: .bottom
             )
 
-            VStack {
-                Spacer()
-
-                HStack(spacing: padding) {
-                    button(title: "Play") {
-                        playAction()
-                    }
-
-                    button(title: "Download") {
-                        Task {
-                            await downloadAction()
-                        }
-                    }
-                }.padding(.bottom, padding)
-            }
+            buttons
         }
         .frame(width: UIScreen.main.bounds.width, height: imageHeight)
     }
@@ -86,6 +72,25 @@ extension BannerView {
                     lineWidth: 1
                 )
         )
+    }
+    
+    @ViewBuilder
+    var buttons: some View {
+        VStack {
+            Spacer()
+
+            HStack(spacing: padding) {
+                button(title: "Play") {
+                    playAction()
+                }
+
+                button(title: "Download") {
+                    Task {
+                        await downloadAction()
+                    }
+                }
+            }.padding(.bottom, padding)
+        }
     }
 }
 
