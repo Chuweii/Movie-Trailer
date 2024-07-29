@@ -186,6 +186,8 @@
 		B2E28E9628DDA66A00BF3EF5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B2E28E7428DD961700BF3EF5 /* AppDelegate.swift */,
+				B2E28E7628DD961700BF3EF5 /* SceneDelegate.swift */,
 				EF4560ED2C4A14F2008D38A9 /* Network */,
 				EF4560F22C4B66A0008D38A9 /* ErrorType */,
 			);
@@ -195,10 +197,8 @@
 		B2E28F1028EBC4A500BF3EF5 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				B2E28E7428DD961700BF3EF5 /* AppDelegate.swift */,
-				B2E28E7628DD961700BF3EF5 /* SceneDelegate.swift */,
-				B2E28E7A28DD961700BF3EF5 /* Main.storyboard */,
 				B2E28E7D28DD961900BF3EF5 /* Assets.xcassets */,
+				B2E28E7A28DD961700BF3EF5 /* Main.storyboard */,
 				B2E28E7F28DD961900BF3EF5 /* LaunchScreen.storyboard */,
 			);
 			path = Others;
