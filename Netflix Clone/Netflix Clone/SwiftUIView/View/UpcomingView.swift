@@ -9,8 +9,6 @@ import SwiftUI
 
 struct UpcomingView: View {
     let viewModel: UpcomingViewModel
-    let imageSize: CGSize = .init(width: 100, height: 140)
-    let iconSize: CGFloat = 30
     
     var body: some View {
         NavigationStack {

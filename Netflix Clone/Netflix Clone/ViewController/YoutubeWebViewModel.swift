@@ -18,7 +18,7 @@ class YoutubeWebViewModel {
     
     let movieTitle: String
     let overViewText: String
-    let repository: YoutubeRepositoryProtocol
+    private let repository: YoutubeRepositoryProtocol
     
     init(
         movieTitle: String,

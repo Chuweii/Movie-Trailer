@@ -17,9 +17,9 @@ class DownloadViewModel {
 
     // MARK: - Init
 
-    let repository: MovieDBRepositoryProtocol
-    let delegate: DownloadViewModelDelegate
-    let dataRepository: DataPersistenceRepositoryProtocol
+    private let repository: MovieDBRepositoryProtocol
+    private let delegate: DownloadViewModelDelegate
+    private let dataRepository: DataPersistenceRepositoryProtocol
     
     init(
         repository: MovieDBRepositoryProtocol = MovieDBRepository(),

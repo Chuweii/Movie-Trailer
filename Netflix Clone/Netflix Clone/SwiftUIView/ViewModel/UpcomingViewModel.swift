@@ -18,8 +18,8 @@ class UpcomingViewModel {
     
     // MARK: - Init
     
-    let repository: MovieDBRepositoryProtocol
-    let delegate: UpcomingViewModelDelegate
+    private let repository: MovieDBRepositoryProtocol
+    private let delegate: UpcomingViewModelDelegate
 
     init(
         repository: MovieDBRepositoryProtocol = MovieDBRepository(),

@@ -24,8 +24,8 @@ class SearchViewModel: ObservableObject {
 
     // MARK: - Init
 
-    let repository: MovieDBRepositoryProtocol
-    let delegate: SearchViewModelDelegate
+    private let repository: MovieDBRepositoryProtocol
+    private let delegate: SearchViewModelDelegate
 
     init(
         repository: MovieDBRepositoryProtocol = MovieDBRepository(),
