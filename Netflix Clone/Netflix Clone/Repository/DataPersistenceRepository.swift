@@ -9,43 +9,32 @@ import Foundation
 import UIKit
 import CoreData
 
-enum DatabaseError:Error {
-    case failedToSaveData
-    case failedToFetchData
-    case failedToFindData
-    case failedToGetAppDelegate
-}
-
-protocol DataPersistenceDelegate {
-    func downloadTitleWith(model: Title, completion: @escaping (Result<Void, Error>) -> Void) async
-    func fetchingTitleFromDataBase(completion: @escaping (Result<[Title], Error>) -> Void) async
-    func deleteTitle(with title: Title, completion: @escaping (Result<Void, Error>) -> Void) async
+protocol DataPersistenceRepositoryProtocol {
+    func downloadTitleWith(model: Title) async throws
+    func fetchingTitleFromDataBase() async throws -> [Title]
+    func deleteTitle(with title: Title) async throws
 }
  
-class DataPersistenceManager: DataPersistenceDelegate {
-    static let shared = DataPersistenceManager()
-    
+class DataPersistenceRepository: DataPersistenceRepositoryProtocol {    
     @MainActor
-    func downloadTitleWith(model: Title, completion: @escaping (Result<Void, Error>) -> Void) async {
+    func downloadTitleWith(model: Title) async throws {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            completion(.failure(DatabaseError.failedToGetAppDelegate))
-            return
+            throw DatabaseError.failedToGetAppDelegate
         }
         let context = appDelegate.persistentContainer.viewContext
         _ = TitleItem(context: context, title: model)
         
         do {
             try context.save()
-            completion(.success(()))
         } catch {
-            completion(.failure(DatabaseError.failedToSaveData))
+            throw DatabaseError.failedToSaveData
         }
     }
     
     @MainActor
-    func fetchingTitleFromDataBase(completion: @escaping (Result<[Title], Error>) -> Void) async {
+    func fetchingTitleFromDataBase() async throws -> [Title] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+            throw DatabaseError.failedToGetAppDelegate
         }
         let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
@@ -53,16 +42,16 @@ class DataPersistenceManager: DataPersistenceDelegate {
         do {
             let titleItems = try context.fetch(request)
             let titles = titleItems.map { Title(titleItem: $0) }
-            completion(.success(titles))
+            return titles
         } catch {
-            completion(.failure(DatabaseError.failedToFetchData))
+            throw DatabaseError.failedToFetchData
         }
     }
     
     @MainActor
-    func deleteTitle(with title: Title, completion: @escaping (Result<Void, Error>) -> Void) async {
+    func deleteTitle(with title: Title) async throws {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+            throw DatabaseError.failedToGetAppDelegate
         }
         let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
@@ -73,12 +62,11 @@ class DataPersistenceManager: DataPersistenceDelegate {
             if let item = items.first {
                 context.delete(item)
                 try context.save()
-                completion(.success(()))
             } else {
-                completion(.failure(DatabaseError.failedToFindData))
+                throw DatabaseError.failedToFindData
             }
         } catch {
-            completion(.failure(DatabaseError.failedToFindData))
+            throw DatabaseError.failedToFindData
         }
     }
 }

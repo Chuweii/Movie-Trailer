@@ -28,13 +28,16 @@ class HomeViewModel {
     // MARK: - Init
 
     private let repository: MovieDBRepositoryProtocol
+    private let dataRepository: DataPersistenceRepositoryProtocol
     private let delegate: HomeViewModelDelegate
 
     init(
         repository: MovieDBRepositoryProtocol = MovieDBRepository(),
+        dataRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
         delegate: HomeViewModelDelegate
     ) {
         self.repository = repository
+        self.dataRepository = dataRepository
         self.delegate = delegate
     }
     
@@ -72,7 +75,7 @@ class HomeViewModel {
         guard trendingMovies.isEmpty, bannerImage.isEmpty else { return }
         do {
             trendingMovies = try await repository.getTrendingMovies()
-            bannerTitle = trendingMovies.filter({ $0.poster_path != nil }).randomElement()
+            bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
             bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
         } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -118,15 +121,12 @@ class HomeViewModel {
     // MARK: - Methods
     
     private func downloadMovie(_ title: Title) async {
-        await DataPersistenceManager.shared.downloadTitleWith(model: title) { result in
-            switch result{
-            case .success():
-                NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
-                self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
-
-            case .failure(let error):
-                self.delegate.showErrorMessage(error: error.localizedDescription)
-            }
+        do {
+            try await dataRepository.downloadTitleWith(model: title)
+            NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
+            self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
+        } catch {
+            self.delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 }

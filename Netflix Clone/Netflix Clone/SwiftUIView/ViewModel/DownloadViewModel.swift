@@ -19,12 +19,15 @@ class DownloadViewModel {
 
     let repository: MovieDBRepositoryProtocol
     let delegate: DownloadViewModelDelegate
-
+    let dataRepository: DataPersistenceRepositoryProtocol
+    
     init(
         repository: MovieDBRepositoryProtocol = MovieDBRepository(),
+        dataRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
         delegate: DownloadViewModelDelegate
     ) {
         self.repository = repository
+        self.dataRepository = dataRepository
         self.delegate = delegate
     }
 
@@ -35,14 +38,11 @@ class DownloadViewModel {
     }
 
     private func getUpComingMovies() async {
-        await DataPersistenceManager.shared.fetchingTitleFromDataBase { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let titles):
-                self.titles = titles
-            case .failure(let error):
-                delegate.showErrorMessage(error: error.localizedDescription)
-            }
+        do {
+            self.titles = try await dataRepository.fetchingTitleFromDataBase()
+        }
+        catch {
+            delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 
@@ -50,14 +50,12 @@ class DownloadViewModel {
         for index in offsets {
             if index < titles.count {
                 let titleToDelete = titles[index]
-                await DataPersistenceManager.shared.deleteTitle(with: titleToDelete) { result in
-                    switch result {
-                    case .success(_):
-                        self.titles.remove(at: index)
-                        
-                    case .failure(let error):
-                        self.delegate.showErrorMessage(error: error.localizedDescription)
-                    }
+                do {
+                    try await dataRepository.deleteTitle(with: titleToDelete)
+                    self.titles.remove(at: index)
+                } catch {
+                    self.delegate.showErrorMessage(error: error.localizedDescription)
+
                 }
             }
         }
