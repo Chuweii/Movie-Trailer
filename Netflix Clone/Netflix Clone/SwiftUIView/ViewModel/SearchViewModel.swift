@@ -50,7 +50,8 @@ class SearchViewModel: ObservableObject {
         guard titles.isEmpty else { return }
         do {
             titles = try await repository.getPopularMovies()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -58,7 +59,8 @@ class SearchViewModel: ObservableObject {
     private func getSearchQuery() async {
         do {
             titles = try await repository.getSearchQuery(query: searchText)
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }

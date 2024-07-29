@@ -34,7 +34,8 @@ class YoutubeWebViewModel {
         do {
             video = try await repository.getYoutubeMovie(query: "\(movieTitle) trailer ")
             shouldLoadVideo = true
-        } catch {
+        } 
+        catch {
             errorMessage = error.localizedDescription
         }
     }

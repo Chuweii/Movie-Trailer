@@ -53,7 +53,8 @@ class DownloadViewModel {
                 do {
                     try await dataRepository.deleteTitle(with: titleToDelete)
                     self.titles.remove(at: index)
-                } catch {
+                } 
+                catch {
                     self.delegate.showErrorMessage(error: error.localizedDescription)
 
                 }

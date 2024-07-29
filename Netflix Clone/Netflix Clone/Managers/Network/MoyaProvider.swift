@@ -28,7 +28,8 @@ extension MoyaProvider {
                         do {
                             let decodedResponse = try JSONDecoder().decode(T.self, from: response.data)
                             continuation.resume(returning: decodedResponse)
-                        } catch {
+                        } 
+                        catch {
                             let customError = NetworkError.customError(.decodingError)
                             continuation.resume(throwing: customError)
                         }

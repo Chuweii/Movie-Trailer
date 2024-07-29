@@ -26,7 +26,8 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
         
         do {
             try context.save()
-        } catch {
+        } 
+        catch {
             throw DatabaseError.failedToSaveData
         }
     }
@@ -43,7 +44,8 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
             let titleItems = try context.fetch(request)
             let titles = titleItems.map { Title(titleItem: $0) }
             return titles
-        } catch {
+        } 
+        catch {
             throw DatabaseError.failedToFetchData
         }
     }
@@ -65,7 +67,8 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
             } else {
                 throw DatabaseError.failedToFindData
             }
-        } catch {
+        } 
+        catch {
             throw DatabaseError.failedToFindData
         }
     }

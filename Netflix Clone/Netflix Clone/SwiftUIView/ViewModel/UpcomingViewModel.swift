@@ -43,7 +43,8 @@ class UpcomingViewModel {
         guard titles.isEmpty else { return }
         do {
             titles = try await repository.getUpcomingMovies()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }

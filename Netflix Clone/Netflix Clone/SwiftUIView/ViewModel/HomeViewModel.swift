@@ -77,7 +77,8 @@ class HomeViewModel {
             trendingMovies = try await repository.getTrendingMovies()
             bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
             bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -86,7 +87,8 @@ class HomeViewModel {
         guard popularMovies.isEmpty else { return }
         do {
             popularMovies = try await repository.getPopularMovies()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -95,7 +97,8 @@ class HomeViewModel {
         guard trendingTV.isEmpty else { return }
         do {
             trendingTV = try await repository.getTrendingTV()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -104,7 +107,8 @@ class HomeViewModel {
         guard upComingMovies.isEmpty else { return }
         do {
             upComingMovies = try await repository.getUpcomingMovies()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -113,7 +117,8 @@ class HomeViewModel {
         guard topRatedMovies.isEmpty else { return }
         do {
             topRatedMovies = try await repository.getTopRatedMovies()
-        } catch {
+        } 
+        catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
@@ -125,7 +130,8 @@ class HomeViewModel {
             try await dataRepository.downloadTitleWith(model: title)
             NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
             self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
-        } catch {
+        } 
+        catch {
             self.delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
