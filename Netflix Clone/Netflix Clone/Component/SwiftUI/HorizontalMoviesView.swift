@@ -32,7 +32,7 @@ struct HorizontalMoviesView: View {
                             action(title)
                             
                         }, label: {
-                            AsyncImage(url: .init(string: .movieDBImagePath(imagePath: title.poster_path ?? ""))) { phase in
+                            AsyncImage(url: .movieDBImagePath(imagePath: title.poster_path ?? "")) { phase in
                                 switch phase {
                                 case .success(let image):
                                     image

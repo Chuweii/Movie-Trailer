@@ -31,7 +31,7 @@ class YoutubeWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        onChange()
+        setBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +48,7 @@ class YoutubeWebViewController: UIViewController {
     
     // MARK: - Methods
     
-    private func onChange() {
+    private func setBinding() {
         viewModel.$shouldLoadVideo
             .filter { $0 }
             .receive(on: DispatchQueue.main)
@@ -67,7 +67,7 @@ class YoutubeWebViewController: UIViewController {
     }
     
     private func loadVideo() {
-        guard let videoId = viewModel.video?.id.videoId, let url = URL(string: .youtubeURLPath(videoId: videoId)) else { return }
+        guard let videoId = viewModel.video?.id.videoId, let url = URL.youtubeURLPath(videoId: videoId) else { return }
         webView.load(URLRequest(url: url))
     }
     

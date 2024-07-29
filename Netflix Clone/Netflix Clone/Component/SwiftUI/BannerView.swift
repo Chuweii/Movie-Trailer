@@ -10,7 +10,7 @@ import SwiftUI
 struct BannerView: View {
     // MARK: - Properties
 
-    @Binding var imageURL: String
+    @Binding var imageURL: URL?
     let imageHeight: CGFloat = 450
     let playAction: () -> Void
     let downloadAction: (() async -> Void)
@@ -22,7 +22,7 @@ struct BannerView: View {
         ZStack {
             Color.black
 
-            AsyncImage(url: .init(string: imageURL)) { phase in
+            AsyncImage(url: imageURL) { phase in
                 switch phase {
                 case .success(let image):
                     image
@@ -90,6 +90,6 @@ extension BannerView {
 }
 
 #Preview {
-    @State var imageURL: String = "https://media.gq.com.tw/photos/5fa2907c4a1c25519349c58c/16:9/w_2560%2Cc_limit/GettyImages-454008386.jpg"
+    @State var imageURL: URL? = .init(string: "https://media.gq.com.tw/photos/5fa2907c4a1c25519349c58c/16:9/w_2560%2Cc_limit/GettyImages-454008386.jpg")
     return BannerView(imageURL: $imageURL) { } downloadAction: { }
 }

@@ -36,12 +36,13 @@ extension UIColor {
     }
 }
 
-extension String {
-    static func movieDBImagePath(imagePath: String) -> String {
-        "https://image.tmdb.org/t/p/w500\(imagePath)"
+
+extension URL {
+    static func movieDBImagePath(imagePath: String) -> URL? {
+        URL(string: "https://image.tmdb.org/t/p/w500\(imagePath)")
     }
     
-    static func youtubeURLPath(videoId: String) -> String {
-        "https://www.youtube.com/embed/\(videoId)"
+    static func youtubeURLPath(videoId: String) -> URL? {
+        URL(string: "https://www.youtube.com/embed/\(videoId)")
     }
 }

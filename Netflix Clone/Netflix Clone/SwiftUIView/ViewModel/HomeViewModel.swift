@@ -17,7 +17,7 @@ protocol HomeViewModelDelegate {
 class HomeViewModel {
     // MARK: - Properties
 
-    var bannerImage: String = ""
+    var bannerImage: URL?
     var bannerTitle: Title?
     var trendingMovies: [Title] = []
     var popularMovies: [Title] = []
@@ -72,7 +72,7 @@ class HomeViewModel {
     }
 
     private func getTrendingMovies() async {
-        guard trendingMovies.isEmpty, bannerImage.isEmpty else { return }
+        guard trendingMovies.isEmpty else { return }
         do {
             trendingMovies = try await repository.getTrendingMovies()
             bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
