@@ -128,7 +128,6 @@ class HomeViewModel {
     private func downloadMovie(_ title: Title) async {
         do {
             try await dataPersistenceRepository.downloadMovieWithTitle(model: title)
-            NotificationCenter.default.post(name: Notification.Name("downloaded"), object: nil)
             self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
         } 
         catch {
