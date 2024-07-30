@@ -14,19 +14,25 @@ class HomeViewModelSpec: AsyncSpec {
         // MARK: - Properties
 
         var delegate: MockHomeViewModelDelegate!
-        var repository: FakeMovieDBRepository!
+        var movieDBRepository: FakeMovieDBRepository!
+        var dataPersistenceRepository: FakeDataPersistenceRepository!
         var viewModel: HomeViewModel!
         
         beforeEach {
             delegate = MockHomeViewModelDelegate()
-            repository = FakeMovieDBRepository()
-            viewModel = HomeViewModel(movieDBRepository: repository, delegate: delegate)
+            movieDBRepository = FakeMovieDBRepository()
+            dataPersistenceRepository = FakeDataPersistenceRepository()
+            viewModel = HomeViewModel(
+                movieDBRepository: movieDBRepository,
+                dataPersistenceRepository: dataPersistenceRepository,
+                delegate: delegate
+            )
         }
         
         describe("get trending movies") {
             context("when get trending movies success") {
                 beforeEach {
-                    repository.getTrendingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
                     await viewModel.onAppear()
                 }
                 
@@ -39,7 +45,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get popular movies") {
             context("when get popular movies success") {
                 beforeEach {
-                    repository.getPopularMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getPopularMoviesResult = .success(getDummyTitles())
                     await viewModel.onAppear()
                 }
                 
@@ -52,7 +58,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get upcoming movies") {
             context("when get upcoming movies success") {
                 beforeEach {
-                    repository.getUpcomingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getUpcomingMoviesResult = .success(getDummyTitles())
                     await viewModel.onAppear()
                 }
                 
@@ -65,7 +71,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get trending TV") {
             context("when get trending TV success") {
                 beforeEach {
-                    repository.getTrendingTVResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingTVResult = .success(getDummyTitles())
                     await viewModel.onAppear()
                 }
                 
@@ -78,7 +84,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get top rated movies") {
             context("when get top rated movies success") {
                 beforeEach {
-                    repository.getTopRatedMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTopRatedMoviesResult = .success(getDummyTitles())
                     await viewModel.onAppear()
                 }
                 
@@ -118,6 +124,10 @@ class HomeViewModelSpec: AsyncSpec {
                     await viewModel.didClickedDownload(getDummyTitles()[0])
                 }
                 
+                it("should download movie") {
+                    expect(dataPersistenceRepository.didCallDownloadMovieWithTitle).to(beTrue())
+                }
+                
                 it("should show toast") {
                     expect(delegate.didCallShowToast).to(beTrue())
                 }
@@ -138,6 +148,10 @@ class HomeViewModelSpec: AsyncSpec {
             context("when long press movie image item") {
                 beforeEach {
                     await viewModel.didLongPressImageItem(getDummyTitles()[0])
+                }
+                
+                it("should download movie") {
+                    expect(dataPersistenceRepository.didCallDownloadMovieWithTitle).to(beTrue())
                 }
                 
                 it("should show toast") {

@@ -10,14 +10,15 @@ import UIKit
 import CoreData
 
 protocol DataPersistenceRepositoryProtocol {
-    func downloadTitleWith(model: Title) async throws
-    func fetchingTitleFromDataBase() async throws -> [Title]
-    func deleteTitle(with title: Title) async throws
+    func downloadMovieWithTitle(model: Title) async throws
+    func fetchMovies() async throws -> [Title]
+    func deleteMovieWithTitle(with title: Title) async throws
 }
  
-class DataPersistenceRepository: DataPersistenceRepositoryProtocol {    
+class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
+    
     @MainActor
-    func downloadTitleWith(model: Title) async throws {
+    func downloadMovieWithTitle(model: Title) async throws {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             throw DatabaseError.failedToGetAppDelegate
         }
@@ -33,7 +34,7 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     }
     
     @MainActor
-    func fetchingTitleFromDataBase() async throws -> [Title] {
+    func fetchMovies() async throws -> [Title] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             throw DatabaseError.failedToGetAppDelegate
         }
@@ -51,7 +52,7 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     }
     
     @MainActor
-    func deleteTitle(with title: Title) async throws {
+    func deleteMovieWithTitle(with title: Title) async throws {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             throw DatabaseError.failedToGetAppDelegate
         }

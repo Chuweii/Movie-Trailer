@@ -39,7 +39,7 @@ class DownloadViewModel {
 
     private func getUpComingMovies() async {
         do {
-            self.titles = try await dataRepository.fetchingTitleFromDataBase()
+            self.titles = try await dataRepository.fetchMovies()
         }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -51,7 +51,7 @@ class DownloadViewModel {
             if index < titles.count {
                 let titleToDelete = titles[index]
                 do {
-                    try await dataRepository.deleteTitle(with: titleToDelete)
+                    try await dataRepository.deleteMovieWithTitle(with: titleToDelete)
                     self.titles.remove(at: index)
                 } 
                 catch {

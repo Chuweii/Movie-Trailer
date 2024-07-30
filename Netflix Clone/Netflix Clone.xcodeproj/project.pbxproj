@@ -23,6 +23,7 @@
 		B2E28EE028E68EAD00BF3EF5 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E28EDF28E68EAC00BF3EF5 /* YoutubeSearchResponse.swift */; };
 		B2E28EE428E6CDB100BF3EF5 /* YoutubeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E28EE328E6CDB100BF3EF5 /* YoutubeWebViewController.swift */; };
 		EF2F92DD2C576B03007DA9D8 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2F92DC2C576B03007DA9D8 /* DatabaseError.swift */; };
+		EF2F92E22C58763F007DA9D8 /* FakeDataPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2F92E12C58763F007DA9D8 /* FakeDataPersistenceRepository.swift */; };
 		EF4560D72C4A0898008D38A9 /* Netflix_Clone_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4560D62C4A0898008D38A9 /* Netflix_Clone_Tests.swift */; };
 		EF4560DF2C4A08B8008D38A9 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = EF4560DE2C4A08B8008D38A9 /* Nimble */; };
 		EF4560E12C4A08BC008D38A9 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = EF4560E02C4A08BC008D38A9 /* Quick */; };
@@ -84,6 +85,7 @@
 		B2E28EDF28E68EAC00BF3EF5 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		B2E28EE328E6CDB100BF3EF5 /* YoutubeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeWebViewController.swift; sourceTree = "<group>"; };
 		EF2F92DC2C576B03007DA9D8 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		EF2F92E12C58763F007DA9D8 /* FakeDataPersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataPersistenceRepository.swift; sourceTree = "<group>"; };
 		EF4560D62C4A0898008D38A9 /* Netflix_Clone_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netflix_Clone_Tests.swift; sourceTree = "<group>"; };
 		EF4560EE2C4A1513008D38A9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EF4560F02C4A2025008D38A9 /* MoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProvider.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				EF98B1B82C5205C300806D64 /* FakeMovieDBRepository.swift */,
+				EF2F92E12C58763F007DA9D8 /* FakeDataPersistenceRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				EF98B1B92C5205C300806D64 /* FakeMovieDBRepository.swift in Sources */,
 				EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */,
 				EF4560D72C4A0898008D38A9 /* Netflix_Clone_Tests.swift in Sources */,
+				EF2F92E22C58763F007DA9D8 /* FakeDataPersistenceRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
