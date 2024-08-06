@@ -27,8 +27,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getTrendingMovies() async throws -> [Netflix_Clone.Title] {
         didCallGetTrendingMovies = true
         switch getTrendingMoviesResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
@@ -37,8 +37,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getTrendingTV() async throws -> [Netflix_Clone.Title] {
         didCallGetTrendingTV = true
         switch getTrendingTVResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
@@ -47,8 +47,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getUpcomingMovies() async throws -> [Netflix_Clone.Title] {
         didCallGetUpcomingMovies = true
         switch getUpcomingMoviesResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
@@ -57,8 +57,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getPopularMovies() async throws -> [Netflix_Clone.Title] {
         didCallGetPopularMovies = true
         switch getPopularMoviesResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
@@ -67,8 +67,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getTopRatedMovies() async throws -> [Netflix_Clone.Title] {
         didCallGetTopRatedMovies = true
         switch getTopRatedMoviesResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
@@ -77,8 +77,8 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     func getSearchQuery(query: String) async throws -> [Netflix_Clone.Title] {
         didCallGetSearchQuery = true
         switch getSearchQueryResult {
-        case .success(let success):
-            return success
+        case .success(let titles):
+            return titles
         case .failure(let error):
             throw error
         }
