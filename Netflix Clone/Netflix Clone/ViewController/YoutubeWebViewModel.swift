@@ -16,8 +16,8 @@ class YoutubeWebViewModel {
 
     // MARK: - Init
     
-    let movieTitle: String
-    let overViewText: String
+    private(set) var movieTitle: String
+    private(set) var overViewText: String
     private let repository: YoutubeRepositoryProtocol
     
     init(
