@@ -15,11 +15,9 @@ struct HomeView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
                     BannerView(imageURL: $viewModel.bannerImage) {
-                        guard let title = viewModel.bannerTitle else { return }
-                        viewModel.didClickedPlay(title)
+                        viewModel.didClickedPlay()
                     } downloadAction: {
-                        guard let title = viewModel.bannerTitle else { return }
-                        await viewModel.didClickedDownload(title)
+                        await viewModel.didClickedDownload()
                     }
 
                     HorizontalMoviesView(

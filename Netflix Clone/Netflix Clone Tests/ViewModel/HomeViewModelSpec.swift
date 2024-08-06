@@ -109,7 +109,9 @@ class HomeViewModelSpec: AsyncSpec {
         describe("play button") {
             context("when clicked play button") {
                 beforeEach {
-                    viewModel.didClickedPlay(getDummyTitles()[0])
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
+                    await viewModel.onAppear()
+                    viewModel.didClickedPlay()
                 }
                 
                 it("should push to youtube web screen") {
@@ -121,7 +123,9 @@ class HomeViewModelSpec: AsyncSpec {
         describe("download button") {
             context("when clicked download button") {
                 beforeEach {
-                    await viewModel.didClickedDownload(getDummyTitles()[0])
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
+                    await viewModel.onAppear()
+                    await viewModel.didClickedDownload()
                 }
                 
                 it("should download movie") {
@@ -170,7 +174,7 @@ class HomeViewModelSpec: AsyncSpec {
                     original_language: "",
                     original_title: "Spider Man",
                     original_name: "",
-                    poster_path: "",
+                    poster_path: "111",
                     overview: "",
                     vote_count: 1,
                     release_date: "",
@@ -182,7 +186,7 @@ class HomeViewModelSpec: AsyncSpec {
                     original_language: "",
                     original_title: "Harry Potter",
                     original_name: "",
-                    poster_path: "",
+                    poster_path: "222",
                     overview: "",
                     vote_count: 2,
                     release_date: "",

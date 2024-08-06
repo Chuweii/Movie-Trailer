@@ -47,11 +47,13 @@ class HomeViewModel {
         delegate.pushYoutubeWebView(title: title)
     }
     
-    func didClickedPlay(_ title: Title) {
+    func didClickedPlay() {
+        guard let title = bannerTitle else { return }
         delegate.pushYoutubeWebView(title: title)
     }
     
-    func didClickedDownload(_ title: Title) async {
+    func didClickedDownload() async {
+        guard let title = bannerTitle else { return }
         await downloadMovie(title)
     }
     
