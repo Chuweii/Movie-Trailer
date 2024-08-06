@@ -67,8 +67,7 @@ class YoutubeWebViewController: UIViewController {
     }
     
     private func loadVideo() {
-        guard let videoId = viewModel.video?.id.videoId, let url = URL.youtubeURLPath(videoId: videoId) else { return }
-        webView.load(URLRequest(url: url))
+        webView.load(URLRequest(url: viewModel.videoURL!))
     }
     
     private func setupView() {

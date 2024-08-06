@@ -12,7 +12,7 @@ class YoutubeWebViewModel {
     
     @Published var shouldLoadVideo: Bool = false
     @Published var errorMessage: String? = nil
-    var video: VideoElement?
+    var videoURL: URL?
 
     // MARK: - Init
     
@@ -32,7 +32,12 @@ class YoutubeWebViewModel {
     
     func getYoutubeMovie() async {
         do {
-            video = try await repository.getYoutubeMovie(query: "\(movieTitle) trailer ")
+            let video: VideoElement? = try await repository.getYoutubeMovie(query: "\(movieTitle) trailer ")
+            guard let videoId = video?.id.videoId else {
+                errorMessage = "Not found video ID"
+                return
+            }
+            videoURL = URL.youtubeURLPath(videoId: videoId)
             shouldLoadVideo = true
         } 
         catch {
