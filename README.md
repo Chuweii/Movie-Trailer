@@ -11,9 +11,10 @@
 ### Network Layer
 - Moya
 
-### Unit Test
+### Unit Test & UI Test
 - Quick
 - Nimble
+- ViewInspector
 
 ### Data Persistence
 - Core Data
