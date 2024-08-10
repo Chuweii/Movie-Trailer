@@ -11,7 +11,7 @@ struct HorizontalMoviesView: View {
     // MARK: - Properties
     
     let title: String
-    @Binding var images: [Title]
+    @Binding var titles: [Title]
     var action: (Title) -> Void
     var longPressAction: ((Title) async -> Void)
     
@@ -27,7 +27,7 @@ struct HorizontalMoviesView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
-                    ForEach(images, id: \.id) { title in
+                    ForEach(titles, id: \.id) { title in
                         Button(action: {
                             action(title)
                             

@@ -22,7 +22,7 @@ struct HomeView: View {
 
                     HorizontalMoviesView(
                         title: "Movie Trending".uppercased(),
-                        images: $viewModel.trendingMovies
+                        titles: $viewModel.trendingMovies
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
@@ -31,7 +31,7 @@ struct HomeView: View {
 
                     HorizontalMoviesView(
                         title: "Popular".uppercased(),
-                        images: $viewModel.popularMovies
+                        titles: $viewModel.popularMovies
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
@@ -40,7 +40,7 @@ struct HomeView: View {
 
                     HorizontalMoviesView(
                         title: "TrendingTV".uppercased(),
-                        images: $viewModel.trendingTV
+                        titles: $viewModel.trendingTV
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
@@ -49,7 +49,7 @@ struct HomeView: View {
 
                     HorizontalMoviesView(
                         title: "Upcoming Movies".uppercased(),
-                        images: $viewModel.upComingMovies
+                        titles: $viewModel.upComingMovies
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
@@ -58,7 +58,7 @@ struct HomeView: View {
 
                     HorizontalMoviesView(
                         title: "Top Rated".uppercased(),
-                        images: $viewModel.topRatedMovies
+                        titles: $viewModel.topRatedMovies
                     ) { title in
                         viewModel.didClickedImageItem(title)
                     } longPressAction: { title in
