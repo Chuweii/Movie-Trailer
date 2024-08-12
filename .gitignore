@@ -24,3 +24,4 @@ build/
 \#*#
 .#*
 Netflix Clone/Netflix Clone.xcodeproj/project.xcworkspace/xcuserdata/weichu.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
