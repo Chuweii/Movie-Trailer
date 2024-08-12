@@ -138,11 +138,29 @@ class TabBarViewController: UIViewController {
 
 extension TabBarViewController: TabBarItemViewDelegate {
     func tapHandler(_ view: TabBarItemView) {
-        let allView = bottomStack.arrangedSubviews[currentIndex] as! TabBarItemView
-        allView.isSelected = false
-        view.isSelected = true
-        currentIndex = bottomStack.arrangedSubviews.firstIndex(where: { $0 == view }) ?? 0
-        setCurrentVC(pageIndex: ViewControllerPage(rawValue: currentIndex) ?? .Home)
+        let tappedIndex = bottomStack.arrangedSubviews.firstIndex(where: { $0 == view }) ?? 0
+        let tappedPage = ViewControllerPage(rawValue: tappedIndex) ?? .Home
+
+        if tappedIndex == currentIndex {
+            // If user in current page
+            switch tappedPage {
+            case .Home:
+                homeViewController.popToRootViewController(animated: true)
+            case .Upcoming:
+                upcomingViewController.popToRootViewController(animated: true)
+            case .Search:
+                searchViewController.popToRootViewController(animated: true)
+            case .Download:
+                downloadViewController.popToRootViewController(animated: true)
+            }
+        } else {
+            let allView = bottomStack.arrangedSubviews[currentIndex] as! TabBarItemView
+            allView.isSelected = false
+            view.isSelected = true
+            currentIndex = tappedIndex
+            setCurrentVC(pageIndex: tappedPage)
+        }
+            
         tabItemAnimate(view)
     }
     
