@@ -19,11 +19,11 @@ class TabBarViewController: UIViewController {
         
     // MARK: - Model
     
-    private let tabBarItemModel = [
-        TabBarItemModel(icon: "house", title: "Home"),
-        TabBarItemModel(icon: "play.circle", title: "Coming"),
-        TabBarItemModel(icon: "magnifyingglass.circle.fill", title: "Search"),
-        TabBarItemModel(icon: "arrow.down.to.line", title: "Download")
+    private let tabBarItems = [
+        TabBarItem(icon: "house", title: "Home"),
+        TabBarItem(icon: "play.circle", title: "Coming"),
+        TabBarItem(icon: "magnifyingglass.circle.fill", title: "Search"),
+        TabBarItem(icon: "arrow.down.to.line", title: "Download")
     ]
     
     // MARK: - Properties
@@ -58,7 +58,7 @@ class TabBarViewController: UIViewController {
     }
     
     private func createItem() {
-        tabBarItemModel.forEach { model in
+        tabBarItems.forEach { model in
             let item = TabBarItemView(image: model.icon, title: model.title)
             item.isSelected = false
             item.delegate = self

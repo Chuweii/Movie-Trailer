@@ -17,17 +17,14 @@ class DownloadViewModel {
 
     // MARK: - Init
 
-    private let repository: MovieDBRepositoryProtocol
+    private let repository: DataPersistenceRepositoryProtocol
     private let delegate: DownloadViewModelDelegate
-    private let dataRepository: DataPersistenceRepositoryProtocol
     
     init(
-        repository: MovieDBRepositoryProtocol = MovieDBRepository(),
-        dataRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
+        repository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
         delegate: DownloadViewModelDelegate
     ) {
         self.repository = repository
-        self.dataRepository = dataRepository
         self.delegate = delegate
     }
 
@@ -39,7 +36,7 @@ class DownloadViewModel {
 
     private func getUpComingMovies() async {
         do {
-            self.titles = try await dataRepository.fetchMovies()
+            self.titles = try await repository.fetchMovies()
         }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -51,7 +48,7 @@ class DownloadViewModel {
             if index < titles.count {
                 let titleToDelete = titles[index]
                 do {
-                    try await dataRepository.deleteMovieWithTitle(with: titleToDelete)
+                    try await repository.deleteMovieWithTitle(with: titleToDelete)
                     self.titles.remove(at: index)
                 } 
                 catch {

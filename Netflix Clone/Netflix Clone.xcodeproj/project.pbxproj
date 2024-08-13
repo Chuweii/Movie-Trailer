@@ -51,7 +51,7 @@
 		EFC5618B2C4CCE150037DEE6 /* HomeViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618A2C4CCE150037DEE6 /* HomeViewModelSpec.swift */; };
 		EFC561902C4CDC3B0037DEE6 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */; };
 		EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */; };
-		EFC561972C4CDD6C0037DEE6 /* TabBarItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561962C4CDD6C0037DEE6 /* TabBarItemModel.swift */; };
+		EFC561972C4CDD6C0037DEE6 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561962C4CDD6C0037DEE6 /* TabBarItem.swift */; };
 		EFC5619D2C4D4DE30037DEE6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5619C2C4D4DE30037DEE6 /* HomeView.swift */; };
 		EFC5619F2C4DE3150037DEE6 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC5619E2C4DE3150037DEE6 /* UIViewController+.swift */; };
 		EFC561A12C4DE64D0037DEE6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC561A02C4DE64D0037DEE6 /* HomeViewModel.swift */; };
@@ -112,7 +112,7 @@
 		EFC5618D2C4CD1AB0037DEE6 /* Netflix Clone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Netflix Clone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		EFC561932C4CDCB90037DEE6 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		EFC561962C4CDD6C0037DEE6 /* TabBarItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemModel.swift; sourceTree = "<group>"; };
+		EFC561962C4CDD6C0037DEE6 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		EFC5619C2C4D4DE30037DEE6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EFC5619E2C4DE3150037DEE6 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		EFC561A02C4DE64D0037DEE6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				EFC5618F2C4CDC3B0037DEE6 /* TabBarItemView.swift */,
-				EFC561962C4CDD6C0037DEE6 /* TabBarItemModel.swift */,
+				EFC561962C4CDD6C0037DEE6 /* TabBarItem.swift */,
 			);
 			path = TabBarItem;
 			sourceTree = "<group>";
@@ -509,7 +509,7 @@
 				EF4560FC2C4B6A91008D38A9 /* YoutubeRepository.swift in Sources */,
 				EFC5619F2C4DE3150037DEE6 /* UIViewController+.swift in Sources */,
 				EF4560FA2C4B6A76008D38A9 /* MovieDBRepository.swift in Sources */,
-				EFC561972C4CDD6C0037DEE6 /* TabBarItemModel.swift in Sources */,
+				EFC561972C4CDD6C0037DEE6 /* TabBarItem.swift in Sources */,
 				B26D5BB029082A1800FCA91A /* NetflixCloneModel.xcdatamodeld in Sources */,
 				EFC5619D2C4D4DE30037DEE6 /* HomeView.swift in Sources */,
 				B2E28E7528DD961700BF3EF5 /* AppDelegate.swift in Sources */,
