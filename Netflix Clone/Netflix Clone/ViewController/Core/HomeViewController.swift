@@ -19,8 +19,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: HomeViewModelDelegate {
     func pushYoutubeWebView(title: Title) {
         let vm: YoutubeWebViewModel = .init(
-            movieTitle: title.original_title ?? title.original_name ?? "",
-            overViewText: title.overview ?? ""
+            title: title
         )
         let vc = YoutubeWebViewController(viewModel: vm)
         self.navigationController?.pushViewController(vc, animated: true)

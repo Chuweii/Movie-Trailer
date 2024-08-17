@@ -64,6 +64,15 @@ class HomeViewModel {
     // MARK: - API Call
     
     func onAppear() async {
+        guard trendingMovies.isEmpty || popularMovies.isEmpty || trendingTV.isEmpty || upComingMovies.isEmpty || topRatedMovies.isEmpty else { return }
+        await getAllMovies()
+    }
+    
+    func onRefresh() async {
+        await getAllMovies()
+    }
+    
+    private func getAllMovies() async {
         await withTaskGroup(of: Void.self) { group in
             group.addTask { await self.getTrendingMovies() }
             group.addTask { await self.getPopularMovies() }
@@ -74,9 +83,8 @@ class HomeViewModel {
     }
 
     private func getTrendingMovies() async {
-        guard trendingMovies.isEmpty else { return }
         do {
-            trendingMovies = try await movieDBRepository.getTrendingMovies()
+            trendingMovies = try await movieDBRepository.getTrendingMovies().shuffled()
             bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
             bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
         } 
@@ -86,40 +94,36 @@ class HomeViewModel {
     }
 
     private func getPopularMovies() async {
-        guard popularMovies.isEmpty else { return }
         do {
-            popularMovies = try await movieDBRepository.getPopularMovies()
-        } 
+            popularMovies = try await movieDBRepository.getPopularMovies().shuffled()
+        }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 
     private func getTrendingTV() async {
-        guard trendingTV.isEmpty else { return }
         do {
-            trendingTV = try await movieDBRepository.getTrendingTV()
-        } 
+            trendingTV = try await movieDBRepository.getTrendingTV().shuffled()
+        }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 
     private func getUpComingMovies() async {
-        guard upComingMovies.isEmpty else { return }
         do {
-            upComingMovies = try await movieDBRepository.getUpcomingMovies()
-        } 
+            upComingMovies = try await movieDBRepository.getUpcomingMovies().shuffled()
+        }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 
     private func getTopRatedMovies() async {
-        guard topRatedMovies.isEmpty else { return }
         do {
-            topRatedMovies = try await movieDBRepository.getTopRatedMovies()
-        } 
+            topRatedMovies = try await movieDBRepository.getTopRatedMovies().shuffled()
+        }
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }

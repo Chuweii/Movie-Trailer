@@ -66,6 +66,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .refreshable {
+                await viewModel.onRefresh()
+            }
             .navigationTitle("Movie Trailer")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

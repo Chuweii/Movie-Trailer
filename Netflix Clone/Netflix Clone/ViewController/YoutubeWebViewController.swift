@@ -64,10 +64,25 @@ class YoutubeWebViewController: UIViewController {
                 self?.showAlert(message: $0)
             }
             .store(in: &cancellables)
+        
+        viewModel.$shouldShowToast
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.showToast(message: "Downloaded!! 🥳🥳 Check out on Download page.")
+            }
+            .store(in: &cancellables)
     }
     
     private func loadVideo() {
         webView.load(URLRequest(url: viewModel.videoURL!))
+    }
+    
+    @objc
+    private func didClickDownload() {
+        Task {
+            await viewModel.downloadMovie()
+        }
     }
     
     private func setupView() {
@@ -78,10 +93,12 @@ class YoutubeWebViewController: UIViewController {
         contentView.addSubview(webView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(overviewLabel)
+        contentView.addSubview(downloadButton)
     }
     
     private func autolayout() {
         let padding: CGFloat = 20
+        let buttonSize: CGSize = .init(width: 200, height: 40)
         
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -104,7 +121,15 @@ class YoutubeWebViewController: UIViewController {
         
         overviewLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(padding)
-            make.left.right.bottom.equalTo(contentView).inset(padding)
+            make.left.right.equalTo(contentView).inset(padding)
+        }
+        
+        downloadButton.snp.makeConstraints { make in
+            make.top.equalTo(overviewLabel.snp.bottom).offset(padding)
+            make.bottom.equalTo(contentView).inset(padding)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(buttonSize.width)
+            make.height.equalTo(buttonSize.height)
         }
     }
     
@@ -119,7 +144,7 @@ class YoutubeWebViewController: UIViewController {
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.numberOfLines = 0
         label.sizeToFit()
-        label.text = viewModel.movieTitle
+        label.text = viewModel.getMovieTitle
         return label
     }()
     
@@ -128,13 +153,24 @@ class YoutubeWebViewController: UIViewController {
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.numberOfLines = 0
         label.sizeToFit()
-        label.text = viewModel.overViewText
+        label.text = viewModel.title.overview
         return label
     }()
     
     private let webView: WKWebView = {
         let webView = WKWebView()
         return webView
+    }()
+    
+    private lazy var downloadButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Download", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 20)
+        btn.backgroundColor = .red
+        btn.layer.cornerRadius = 10
+        btn.addTarget(self, action: #selector(didClickDownload), for: .touchUpInside)
+        return btn
     }()
 }
 

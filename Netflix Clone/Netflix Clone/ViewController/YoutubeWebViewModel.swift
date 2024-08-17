@@ -12,27 +12,31 @@ class YoutubeWebViewModel {
     
     @Published var shouldLoadVideo: Bool = false
     @Published var errorMessage: String? = nil
-    var videoURL: URL?
+    @Published var shouldShowToast: Bool = false
+    private(set) var videoURL: URL?
+    private(set) lazy var getMovieTitle: String = {
+        title.original_title ?? title.original_name ?? ""
+    }()
 
     // MARK: - Init
     
-    private(set) var movieTitle: String
-    private(set) var overViewText: String
+    private(set) var title: Title
     private let repository: YoutubeRepositoryProtocol
+    private let dataPersistenceRepository: DataPersistenceRepositoryProtocol
     
     init(
-        movieTitle: String,
-        overViewText: String,
-        repository: YoutubeRepository = .init()
+        title: Title,
+        repository: YoutubeRepositoryProtocol = YoutubeRepository(),
+        dataPersistenceRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository()
     ) {
-        self.movieTitle = movieTitle
-        self.overViewText = overViewText
+        self.title = title
         self.repository = repository
+        self.dataPersistenceRepository = dataPersistenceRepository
     }
     
     func getYoutubeMovie() async {
         do {
-            let video: VideoElement? = try await repository.getYoutubeMovie(query: "\(movieTitle) trailer ")
+            let video: VideoElement? = try await repository.getYoutubeMovie(query: "\(getMovieTitle) trailer ")
             guard let videoId = video?.id.videoId else {
                 errorMessage = "Not found video ID"
                 return
@@ -40,6 +44,16 @@ class YoutubeWebViewModel {
             videoURL = URL.youtubeURLPath(videoId: videoId)
             shouldLoadVideo = true
         } 
+        catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    func downloadMovie() async {
+        do {
+            try await dataPersistenceRepository.downloadMovieWithTitle(model: title)
+            self.shouldShowToast = true
+        }
         catch {
             errorMessage = error.localizedDescription
         }

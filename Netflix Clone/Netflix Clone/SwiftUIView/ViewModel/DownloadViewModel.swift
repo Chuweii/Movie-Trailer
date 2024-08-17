@@ -31,10 +31,14 @@ class DownloadViewModel {
     // MARK: - Methods
 
     func onAppear() async {
-        await getUpComingMovies()
+        await getDownloadMovies()
+    }
+    
+    func onRefresh() async {
+        await getDownloadMovies()
     }
 
-    private func getUpComingMovies() async {
+    private func getDownloadMovies() async {
         do {
             self.titles = try await repository.fetchMovies()
         }

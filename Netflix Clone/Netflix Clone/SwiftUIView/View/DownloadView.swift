@@ -22,6 +22,9 @@ struct DownloadView: View {
                     }
                 })
             }
+            .refreshable {
+                await viewModel.onRefresh()
+            }
             .listStyle(.plain)
             .navigationTitle("Download")
             .onAppear {

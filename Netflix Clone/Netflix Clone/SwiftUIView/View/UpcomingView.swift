@@ -19,6 +19,9 @@ struct UpcomingView: View {
                     }
                 }
             }
+            .refreshable {
+                await viewModel.onRefresh()
+            }
             .listStyle(.plain)
             .navigationTitle("Coming Soon")
             .onAppear {

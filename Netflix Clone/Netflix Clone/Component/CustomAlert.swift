@@ -102,7 +102,7 @@ class CustomAlert: UIView {
     
     private func configToastView() {
         toastView.subviews.forEach({ $0.removeFromSuperview() })
-        messageLabel.textColor = .white
+        messageLabel.textColor = .black
         messageStackView.distribution = .fill
         messageStackView.axis = .horizontal
         
@@ -215,14 +215,14 @@ class CustomAlert: UIView {
     }()
     private lazy var toastView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black.withAlphaComponent(0.7)
+        view.backgroundColor = .white.withAlphaComponent(0.7)
         view.sizeToFit()
         return view
     }()
     private lazy var cancelButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.contentMode = .scaleAspectFit
-        btn.tintColor = .white
+        btn.tintColor = .black
         btn.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
         btn.addTarget(self, action: #selector(event), for: .touchUpInside)
         return btn

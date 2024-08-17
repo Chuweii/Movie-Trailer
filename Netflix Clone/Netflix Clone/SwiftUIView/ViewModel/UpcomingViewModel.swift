@@ -36,13 +36,17 @@ class UpcomingViewModel {
     }
 
     func onAppear() async {
+        guard titles.isEmpty else { return }
+        await getUpComingMovies()
+    }
+    
+    func onRefresh() async {
         await getUpComingMovies()
     }
 
     private func getUpComingMovies() async {
-        guard titles.isEmpty else { return }
         do {
-            titles = try await repository.getUpcomingMovies()
+            titles = try await repository.getUpcomingMovies().shuffled()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
