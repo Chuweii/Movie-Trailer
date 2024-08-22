@@ -22,6 +22,13 @@
 		B2E28EA928E3DF9600BF3EF5 /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E28EA828E3DF9600BF3EF5 /* Extension+.swift */; };
 		B2E28EE028E68EAD00BF3EF5 /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E28EDF28E68EAC00BF3EF5 /* YoutubeSearchResponse.swift */; };
 		B2E28EE428E6CDB100BF3EF5 /* YoutubeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E28EE328E6CDB100BF3EF5 /* YoutubeWebViewController.swift */; };
+		EF1E98FC2C71A659004015AB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E98FB2C71A659004015AB /* SignInView.swift */; };
+		EF1E98FE2C71A690004015AB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E98FD2C71A690004015AB /* SignUpView.swift */; };
+		EF1E99012C71AC7F004015AB /* UserCredentialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E99002C71AC7F004015AB /* UserCredentialView.swift */; };
+		EF1E99032C71BAFC004015AB /* InfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E99022C71BAFC004015AB /* InfoTextField.swift */; };
+		EF1E99062C71BF1A004015AB /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E99052C71BF1A004015AB /* ToggleStyle.swift */; };
+		EF1E99082C71C533004015AB /* SignButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E99072C71C533004015AB /* SignButton.swift */; };
+		EF1E990A2C72F895004015AB /* SignAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E99092C72F895004015AB /* SignAccountButton.swift */; };
 		EF2F92DD2C576B03007DA9D8 /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2F92DC2C576B03007DA9D8 /* DatabaseError.swift */; };
 		EF2F92E22C58763F007DA9D8 /* FakeDataPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2F92E12C58763F007DA9D8 /* FakeDataPersistenceRepository.swift */; };
 		EF2F92EA2C64FD66007DA9D8 /* HorizontalMoviesViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2F92E92C64FD66007DA9D8 /* HorizontalMoviesViewTest.swift */; };
@@ -86,6 +93,13 @@
 		B2E28EA828E3DF9600BF3EF5 /* Extension+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+.swift"; sourceTree = "<group>"; };
 		B2E28EDF28E68EAC00BF3EF5 /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		B2E28EE328E6CDB100BF3EF5 /* YoutubeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeWebViewController.swift; sourceTree = "<group>"; };
+		EF1E98FB2C71A659004015AB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		EF1E98FD2C71A690004015AB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		EF1E99002C71AC7F004015AB /* UserCredentialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialView.swift; sourceTree = "<group>"; };
+		EF1E99022C71BAFC004015AB /* InfoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTextField.swift; sourceTree = "<group>"; };
+		EF1E99052C71BF1A004015AB /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
+		EF1E99072C71C533004015AB /* SignButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignButton.swift; sourceTree = "<group>"; };
+		EF1E99092C72F895004015AB /* SignAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAccountButton.swift; sourceTree = "<group>"; };
 		EF2F92DC2C576B03007DA9D8 /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		EF2F92E12C58763F007DA9D8 /* FakeDataPersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataPersistenceRepository.swift; sourceTree = "<group>"; };
 		EF2F92E92C64FD66007DA9D8 /* HorizontalMoviesViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMoviesViewTest.swift; sourceTree = "<group>"; };
@@ -163,6 +177,7 @@
 				EFC561912C4CDC960037DEE6 /* ViewController */,
 				EFC5619B2C4D4DCC0037DEE6 /* SwiftUIView */,
 				EFC5618E2C4CDC1B0037DEE6 /* Component */,
+				EF1E99042C71BEFD004015AB /* CustomStyle */,
 				B2E28E9528DDA64D00BF3EF5 /* Extension */,
 				B2E28E9428DDA63D00BF3EF5 /* Models */,
 				B2E28F1028EBC4A500BF3EF5 /* Others */,
@@ -208,6 +223,25 @@
 				B2E28E7F28DD961900BF3EF5 /* LaunchScreen.storyboard */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		EF1E98FF2C71AC5D004015AB /* UserCredential */ = {
+			isa = PBXGroup;
+			children = (
+				EF1E99002C71AC7F004015AB /* UserCredentialView.swift */,
+				EF1E98FB2C71A659004015AB /* SignInView.swift */,
+				EF1E98FD2C71A690004015AB /* SignUpView.swift */,
+			);
+			path = UserCredential;
+			sourceTree = "<group>";
+		};
+		EF1E99042C71BEFD004015AB /* CustomStyle */ = {
+			isa = PBXGroup;
+			children = (
+				EF1E99052C71BF1A004015AB /* ToggleStyle.swift */,
+				EF1E99092C72F895004015AB /* SignAccountButton.swift */,
+			);
+			path = CustomStyle;
 			sourceTree = "<group>";
 		};
 		EF2F92E82C64FC6F007DA9D8 /* View */ = {
@@ -365,6 +399,7 @@
 		EFC5619B2C4D4DCC0037DEE6 /* SwiftUIView */ = {
 			isa = PBXGroup;
 			children = (
+				EF1E98FF2C71AC5D004015AB /* UserCredential */,
 				EF98B1AE2C509E6C00806D64 /* View */,
 				EF98B1AF2C509E7300806D64 /* ViewModel */,
 			);
@@ -377,6 +412,8 @@
 				EFC561A32C4DF0010037DEE6 /* BannerView.swift */,
 				EFC561A52C4E127C0037DEE6 /* HorizontalMoviesView.swift */,
 				EF98B1992C4F4F4500806D64 /* CommonListRow.swift */,
+				EF1E99022C71BAFC004015AB /* InfoTextField.swift */,
+				EF1E99072C71C533004015AB /* SignButton.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -508,19 +545,26 @@
 				EF98B1A52C4FB59500806D64 /* SearchView.swift in Sources */,
 				EF4560FC2C4B6A91008D38A9 /* YoutubeRepository.swift in Sources */,
 				EFC5619F2C4DE3150037DEE6 /* UIViewController+.swift in Sources */,
+				EF1E99012C71AC7F004015AB /* UserCredentialView.swift in Sources */,
+				EF1E99032C71BAFC004015AB /* InfoTextField.swift in Sources */,
 				EF4560FA2C4B6A76008D38A9 /* MovieDBRepository.swift in Sources */,
 				EFC561972C4CDD6C0037DEE6 /* TabBarItem.swift in Sources */,
 				B26D5BB029082A1800FCA91A /* NetflixCloneModel.xcdatamodeld in Sources */,
 				EFC5619D2C4D4DE30037DEE6 /* HomeView.swift in Sources */,
 				B2E28E7528DD961700BF3EF5 /* AppDelegate.swift in Sources */,
 				EFC561A12C4DE64D0037DEE6 /* HomeViewModel.swift in Sources */,
+				EF1E98FC2C71A659004015AB /* SignInView.swift in Sources */,
+				EF1E99062C71BF1A004015AB /* ToggleStyle.swift in Sources */,
+				EF1E990A2C72F895004015AB /* SignAccountButton.swift in Sources */,
 				EF98B1AD2C5094F800806D64 /* DownloadViewModel.swift in Sources */,
 				B2E28E9028DD9AD000BF3EF5 /* DownloadViewController.swift in Sources */,
 				B2E28E7728DD961700BF3EF5 /* SceneDelegate.swift in Sources */,
 				B2E28E8C28DD9A5B00BF3EF5 /* UpcomingViewController.swift in Sources */,
 				B2E28EE028E68EAD00BF3EF5 /* YoutubeSearchResponse.swift in Sources */,
 				EFC561942C4CDCB90037DEE6 /* TabBarViewController.swift in Sources */,
+				EF1E99082C71C533004015AB /* SignButton.swift in Sources */,
 				B2E28EA928E3DF9600BF3EF5 /* Extension+.swift in Sources */,
+				EF1E98FE2C71A690004015AB /* SignUpView.swift in Sources */,
 				EF98B19A2C4F4F4500806D64 /* CommonListRow.swift in Sources */,
 				EF98B1982C4F4C2400806D64 /* UpcomingViewModel.swift in Sources */,
 				EF98B1A72C4FB5A100806D64 /* SearchViewModel.swift in Sources */,

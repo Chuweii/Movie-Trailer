@@ -87,21 +87,19 @@ class TabBarViewController: UIViewController {
     }
     
     private func updateChildViews(pageIndex: ViewControllerPage) {
+        navigationController?.navigationBar.isHidden = true
+
         switch pageIndex {
         case .Home:
-            navigationController?.navigationBar.isHidden = true
             viewLayout(view: homeViewController.view)
             
         case .Upcoming:
-            navigationController?.navigationBar.isHidden = true
             viewLayout(view: upcomingViewController.view)
 
         case .Search:
-            navigationController?.navigationBar.isHidden = true
             viewLayout(view: searchViewController.view)
 
         case .Download:
-            navigationController?.navigationBar.isHidden = true
             viewLayout(view: downloadViewController.view)
         }
     }
@@ -124,13 +122,6 @@ class TabBarViewController: UIViewController {
             make.left.right.top.equalTo(self.view)
             make.bottom.equalTo(bottomStack.snp.top)
         }
-    }
-    
-    // MARK: - Event
-    
-    @objc
-    func showProfile() {
-        print("show profile...")
     }
 }
 
@@ -173,19 +164,15 @@ extension TabBarViewController: TabBarItemViewDelegate {
         switch pageIndex {
         case .Home:
             view.addSubview(homeViewController.view)
-            searchViewController.didMove(toParent: self)
             
         case .Upcoming:
             view.addSubview(upcomingViewController.view)
-            searchViewController.didMove(toParent: self)
             
         case .Search:
             view.addSubview(searchViewController.view)
-            searchViewController.didMove(toParent: self)
             
         case .Download:
             view.addSubview(downloadViewController.view)
-            searchViewController.didMove(toParent: self)
         }
         updateChildViews(pageIndex: ViewControllerPage(rawValue: currentIndex) ?? .Home)
     }

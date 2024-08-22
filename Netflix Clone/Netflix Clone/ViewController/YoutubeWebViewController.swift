@@ -165,9 +165,9 @@ class YoutubeWebViewController: UIViewController {
     private lazy var downloadButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Download", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
+        btn.setTitleColor(.black, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 20)
-        btn.backgroundColor = .red
+        btn.backgroundColor = .white
         btn.layer.cornerRadius = 10
         btn.addTarget(self, action: #selector(didClickDownload), for: .touchUpInside)
         return btn

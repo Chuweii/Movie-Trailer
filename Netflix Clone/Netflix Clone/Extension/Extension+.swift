@@ -5,6 +5,7 @@
 //  Created by Wei Chu on 2022/9/28.
 //
 import UIKit
+import SwiftUI
 
 extension UIColor {
     static func colorRGBA(_ red: CGFloat,_ green: CGFloat,_ blue: CGFloat,a: CGFloat) -> UIColor{
@@ -44,5 +45,16 @@ extension URL {
     
     static func youtubeURLPath(videoId: String) -> URL? {
         URL(string: "https://www.youtube.com/embed/\(videoId)")
+    }
+}
+
+
+extension View {
+    @ViewBuilder
+    public func hidden(_ shouldHide: Bool) -> some View {
+        switch shouldHide {
+        case true: hidden()
+        case false: self
+        }
     }
 }

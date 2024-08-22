@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Bindable var viewModel: HomeViewModel
+    @State var isShowUserCredentialView: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -66,9 +67,6 @@ struct HomeView: View {
                     }
                 }
             }
-            .refreshable {
-                await viewModel.onRefresh()
-            }
             .navigationTitle("Movie Trailer")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -78,6 +76,12 @@ struct HomeView: View {
             .background(
                 Color.black
             )
+            .refreshable {
+                await viewModel.onRefresh()
+            }
+            .sheet(isPresented: $isShowUserCredentialView) {
+                UserCredentialView(isShowUserCredentialView: $isShowUserCredentialView)
+            }
             .onAppear {
                 Task {
                     await viewModel.onAppear()
@@ -91,7 +95,7 @@ extension HomeView {
     @ViewBuilder
     var profileBarItem: some View {
         Button {
-            print("profile...")
+            isShowUserCredentialView = true
         } label: {
             Image(systemName: "person.crop.circle")
                 .foregroundColor(.white)
