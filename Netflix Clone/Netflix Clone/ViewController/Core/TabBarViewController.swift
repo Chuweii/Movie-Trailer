@@ -137,10 +137,13 @@ extension TabBarViewController: TabBarItemViewDelegate {
             switch tappedPage {
             case .Home:
                 homeViewController.popToRootViewController(animated: true)
+                
             case .Upcoming:
                 upcomingViewController.popToRootViewController(animated: true)
+                
             case .Search:
                 searchViewController.popToRootViewController(animated: true)
+                
             case .Download:
                 downloadViewController.popToRootViewController(animated: true)
             }
