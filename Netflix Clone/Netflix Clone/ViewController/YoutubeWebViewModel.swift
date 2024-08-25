@@ -35,6 +35,7 @@ class YoutubeWebViewModel {
     }
     
     func getYoutubeMovie() async {
+        guard !shouldLoadVideo else { return }
         do {
             let video: VideoElement? = try await repository.getYoutubeMovie(query: "\(getMovieTitle) trailer ")
             guard let videoId = video?.id.videoId else {
