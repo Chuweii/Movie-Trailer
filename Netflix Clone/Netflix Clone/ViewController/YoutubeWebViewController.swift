@@ -43,7 +43,7 @@ class YoutubeWebViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupConstraint()
+        setConstraint()
     }
     
     // MARK: - Methods
@@ -96,7 +96,7 @@ class YoutubeWebViewController: UIViewController {
         contentView.addSubview(downloadButton)
     }
     
-    private func setupConstraint() {
+    private func setConstraint() {
         let padding: CGFloat = 20
         let buttonSize: CGSize = .init(width: 200, height: 40)
         
