@@ -34,10 +34,8 @@ struct SearchView: View {
             .navigationTitle("Search")
             .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer)
             .transition(.scale)
-            .onAppear {
-                Task {
-                    await viewModel.onAppear()
-                }
+            .task {
+                await viewModel.onAppear()
             }
         }
     }

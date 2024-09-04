@@ -82,10 +82,8 @@ struct HomeView: View {
             .sheet(isPresented: $isShowUserCredentialView) {
                 UserCredentialView(isShowUserCredentialView: $isShowUserCredentialView)
             }
-            .onAppear {
-                Task {
-                    await viewModel.onAppear()
-                }
+            .task {
+                await viewModel.onAppear()
             }
         }
     }

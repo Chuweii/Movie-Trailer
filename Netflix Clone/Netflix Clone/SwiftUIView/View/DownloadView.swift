@@ -18,7 +18,7 @@ struct DownloadView: View {
                 }
                 .onDelete(perform: { indexSet in
                     Task {
-                        await viewModel.deleteDownloadMovie(indexSet)
+                        await viewModel.swipeDeleteMovies(indexSet)
                     }
                 })
             }
@@ -27,10 +27,8 @@ struct DownloadView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Download")
-            .onAppear {
-                Task {
-                    await viewModel.onAppear()
-                }
+            .task {
+                await viewModel.onAppear()
             }
         }
     }

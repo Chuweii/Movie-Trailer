@@ -19,7 +19,7 @@ class DownloadViewModel {
 
     private let repository: DataPersistenceRepositoryProtocol
     private let delegate: DownloadViewModelDelegate
-    
+
     init(
         repository: DataPersistenceRepositoryProtocol = DataPersistenceRepository(),
         delegate: DownloadViewModelDelegate
@@ -33,31 +33,32 @@ class DownloadViewModel {
     func onAppear() async {
         await getDownloadMovies()
     }
-    
+
     func onRefresh() async {
         await getDownloadMovies()
     }
 
+    func swipeDeleteMovies(_ offsets: IndexSet) async {
+        await deleteDownloadMovie(offsets)
+        await onRefresh()
+    }
+
     private func getDownloadMovies() async {
         do {
-            self.titles = try await repository.fetchMovies()
-        }
-        catch {
+            titles = try await repository.fetchMovies()
+        } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
     }
 
-    func deleteDownloadMovie(_ offsets: IndexSet) async {
+    private func deleteDownloadMovie(_ offsets: IndexSet) async {
         for index in offsets {
             if index < titles.count {
                 let titleToDelete = titles[index]
                 do {
                     try await repository.deleteMovieWithTitle(with: titleToDelete)
-                    self.titles.remove(at: index)
-                } 
-                catch {
-                    self.delegate.showErrorMessage(error: error.localizedDescription)
-
+                } catch {
+                    delegate.showErrorMessage(error: error.localizedDescription)
                 }
             }
         }

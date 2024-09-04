@@ -24,10 +24,8 @@ struct UpcomingView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Coming Soon")
-            .onAppear {
-                Task {
-                    await viewModel.onAppear()
-                }
+            .task {
+                await viewModel.onAppear()
             }
         }
     }
