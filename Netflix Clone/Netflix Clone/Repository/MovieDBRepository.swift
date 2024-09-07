@@ -26,62 +26,32 @@ class MovieDBRepository: MovieDBRepositoryProtocol {
     }
     
     func getTrendingMovies() async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getTrendingMovies)
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getTrendingMovies)
+        return response.results
     }
     
     func getTrendingTV() async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getTrendingTV)
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getTrendingTV)
+        return response.results
     }
     
     func getUpcomingMovies() async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getUpcomingMovies)
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getUpcomingMovies)
+        return response.results
     }
     
     func getPopularMovies() async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getPopularMovies)
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getPopularMovies)
+        return response.results
     }
     
     func getTopRatedMovies() async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getTopRatedMovies)
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getTopRatedMovies)
+        return response.results
     }
     
     func getSearchQuery(query: String) async throws -> [Title] {
-        do {
-            let response: TrendingTitleResponse = try await provider.async.request(.getSearchQuery(query: query))
-            return response.results
-        }
-        catch {
-            throw error
-        }
+        let response: TrendingTitleResponse = try await provider.async.request(.getSearchQuery(query: query))
+        return response.results
     }
 }

@@ -16,12 +16,13 @@ protocol DataPersistenceRepositoryProtocol {
 }
  
 class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
+    private var appDelegate: AppDelegate {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return AppDelegate() }
+        return appDelegate
+    }
     
     @MainActor
     func downloadMovieWithTitle(model: Title) async throws {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            throw DatabaseError.failedToGetAppDelegate
-        }
         let context = appDelegate.persistentContainer.viewContext
         _ = TitleItem(context: context, title: model)
         
@@ -35,9 +36,6 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     
     @MainActor
     func fetchMovies() async throws -> [Title] {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            throw DatabaseError.failedToGetAppDelegate
-        }
         let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
         
@@ -53,9 +51,6 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     
     @MainActor
     func deleteMovieWithTitle(with title: Title) async throws {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            throw DatabaseError.failedToGetAppDelegate
-        }
         let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
         request.predicate = NSPredicate(format: "id == %d", title.id)

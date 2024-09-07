@@ -13,20 +13,15 @@ protocol YoutubeRepositoryProtocol {
 }
 
 class YoutubeRepository: YoutubeRepositoryProtocol {
-    
+
     private let provider: MoyaProvider<APIManager>!
-    
+
     init(provider: MoyaProvider<APIManager> = MoyaProvider<APIManager>()) {
         self.provider = provider
     }
-    
+
     func getYoutubeMovie(query: String) async throws -> VideoElement {
-        do {
-            let response: YoutubeSearchResponse = try await provider.async.request(.getYoutubeMovie(query: query))
-            return response.items[0]
-        }
-        catch {
-            throw error
-        }
+        let response: YoutubeSearchResponse = try await provider.async.request(.getYoutubeMovie(query: query))
+        return response.items[0]
     }
 }
