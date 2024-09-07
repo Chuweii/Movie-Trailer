@@ -16,14 +16,18 @@ protocol DataPersistenceRepositoryProtocol {
 }
  
 class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
+    // MARK: - Properties
+    
     private var appDelegate: AppDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return AppDelegate() }
         return appDelegate
     }
+    private lazy var context = appDelegate.persistentContainer.viewContext
+
+    // MARK: - Methods
     
     @MainActor
     func downloadMovieWithTitle(model: Title) async throws {
-        let context = appDelegate.persistentContainer.viewContext
         _ = TitleItem(context: context, title: model)
         
         do {
@@ -36,7 +40,6 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     
     @MainActor
     func fetchMovies() async throws -> [Title] {
-        let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
         
         do {
@@ -51,7 +54,6 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     
     @MainActor
     func deleteMovieWithTitle(with title: Title) async throws {
-        let context = appDelegate.persistentContainer.viewContext
         let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
         request.predicate = NSPredicate(format: "id == %d", title.id)
         
