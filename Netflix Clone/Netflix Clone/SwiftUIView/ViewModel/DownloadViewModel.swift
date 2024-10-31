@@ -13,7 +13,7 @@ protocol DownloadViewModelDelegate {
 
 @Observable
 class DownloadViewModel {
-    var titles: [Title] = []
+    var titles: [Movie] = []
 
     // MARK: - Init
 

@@ -8,13 +8,13 @@
 import SwiftUI
 
 protocol UpcomingViewModelDelegate {
-    func pushYoutubeWebView(title: Title)
+    func pushYoutubeWebView(title: Movie)
     func showErrorMessage(error: String)
 }
 
 @Observable
 class UpcomingViewModel {
-    var titles: [Title] = []
+    var titles: [Movie] = []
     
     // MARK: - Init
     
@@ -31,7 +31,7 @@ class UpcomingViewModel {
     
     // MARK: - Methods
     
-    func didClickedItem(_ title: Title) {
+    func didClickedItem(_ title: Movie) {
         delegate.pushYoutubeWebView(title: title)
     }
 

@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
 // MARK: - SearchViewModelDelegate
 
 extension SearchViewController: SearchViewModelDelegate {
-    func pushYoutubeWebView(title: Title) {
+    func pushYoutubeWebView(title: Movie) {
         let vm: YoutubeWebViewModel = .init(
             title: title
         )

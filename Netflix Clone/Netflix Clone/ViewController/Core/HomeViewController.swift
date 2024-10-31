@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
 // MARK: - HomeViewModelDelegate
 
 extension HomeViewController: HomeViewModelDelegate {
-    func pushYoutubeWebView(title: Title) {
+    func pushYoutubeWebView(title: Movie) {
         let vm: YoutubeWebViewModel = .init(
             title: title
         )

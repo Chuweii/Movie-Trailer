@@ -166,9 +166,9 @@ class HomeViewModelSpec: AsyncSpec {
         
         // MARK: - Fake Data
         
-        func getDummyTitles() -> [Title] {
+        func getDummyTitles() -> [Movie] {
             [
-                Title(
+                Movie(
                     id: 1,
                     media_type: "",
                     original_language: "",
@@ -180,7 +180,7 @@ class HomeViewModelSpec: AsyncSpec {
                     release_date: "",
                     vote_average: 1
                 ),
-                Title(
+                Movie(
                     id: 2,
                     media_type: "",
                     original_language: "",

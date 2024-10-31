@@ -11,7 +11,7 @@ import ViewInspector
 @testable import Netflix_Clone
 
 final class HorizontalMoviesViewTest: XCTestCase {
-    let dummyTitles: Binding<[Title]> = .init(
+    let dummyTitles: Binding<[Movie]> = .init(
         wrappedValue: [.init(
             id: 0,
             media_type: "",

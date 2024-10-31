@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 protocol SearchViewModelDelegate {
-    func pushYoutubeWebView(title: Title)
+    func pushYoutubeWebView(title: Movie)
     func showErrorMessage(error: String)
 }
 
@@ -18,7 +18,7 @@ protocol SearchViewModelDelegate {
 class SearchViewModel: ObservableObject {
     // MARK: - Properties
 
-    @Published var titles: [Title] = []
+    @Published var titles: [Movie] = []
     @Published var searchText: String = ""
     private var cancellables: Set<AnyCancellable> = .init()
 
@@ -38,7 +38,7 @@ class SearchViewModel: ObservableObject {
 
     // MARK: - Methods
 
-    func didClickedItem(_ title: Title) {
+    func didClickedItem(_ title: Movie) {
         delegate.pushYoutubeWebView(title: title)
     }
 

@@ -20,12 +20,12 @@ class YoutubeWebViewModel {
 
     // MARK: - Init
     
-    private(set) var title: Title
+    private(set) var title: Movie
     private let repository: YoutubeRepositoryProtocol
     private let dataPersistenceRepository: DataPersistenceRepositoryProtocol
     
     init(
-        title: Title,
+        title: Movie,
         repository: YoutubeRepositoryProtocol = YoutubeRepository(),
         dataPersistenceRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository()
     ) {

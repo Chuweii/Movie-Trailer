@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol HomeViewModelDelegate {
-    func pushYoutubeWebView(title: Title)
+    func pushYoutubeWebView(title: Movie)
     func showErrorMessage(error: String)
     func showToast(_ message: String)
 }
@@ -18,12 +18,12 @@ class HomeViewModel {
     // MARK: - Properties
 
     var bannerImage: URL?
-    var bannerTitle: Title?
-    var trendingMovies: [Title] = []
-    var popularMovies: [Title] = []
-    var trendingTV: [Title] = []
-    var upComingMovies: [Title] = []
-    var topRatedMovies: [Title] = []
+    var bannerTitle: Movie?
+    var trendingMovies: [Movie] = []
+    var popularMovies: [Movie] = []
+    var trendingTV: [Movie] = []
+    var upComingMovies: [Movie] = []
+    var topRatedMovies: [Movie] = []
 
     // MARK: - Init
 
@@ -43,7 +43,7 @@ class HomeViewModel {
     
     // MARK: - Click Action
     
-    func didClickedImageItem(_ title: Title) {
+    func didClickedImageItem(_ title: Movie) {
         delegate.pushYoutubeWebView(title: title)
     }
     
@@ -57,7 +57,7 @@ class HomeViewModel {
         await downloadMovie(title)
     }
     
-    func didLongPressImageItem(_ title: Title) async {
+    func didLongPressImageItem(_ title: Movie) async {
         await downloadMovie(title)
     }
     
@@ -131,7 +131,7 @@ class HomeViewModel {
     
     // MARK: - Methods
     
-    private func downloadMovie(_ title: Title) async {
+    private func downloadMovie(_ title: Movie) async {
         do {
             try await dataPersistenceRepository.downloadMovieWithTitle(model: title)
             self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")

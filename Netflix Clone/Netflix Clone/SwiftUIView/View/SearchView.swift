@@ -42,8 +42,8 @@ struct SearchView: View {
 }
 
 struct GridItemView: View {
-    @State var title: Title
-    var action: (Title) -> Void
+    @State var title: Movie
+    var action: (Movie) -> Void
     private let itemHeight: CGFloat = 200
 
     var body: some View {

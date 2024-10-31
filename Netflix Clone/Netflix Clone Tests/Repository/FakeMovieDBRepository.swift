@@ -10,12 +10,12 @@ import Moya
 @testable import Netflix_Clone
 
 class FakeMovieDBRepository: MovieDBRepositoryProtocol {
-    var getTrendingMoviesResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
-    var getTrendingTVResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
-    var getUpcomingMoviesResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
-    var getPopularMoviesResult: Result<[Title], Moya.MoyaError> = .failure(MoyaError.requestMapping(""))
-    var getTopRatedMoviesResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
-    var getSearchQueryResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getTrendingMoviesResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getTrendingTVResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getUpcomingMoviesResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getPopularMoviesResult: Result<[Movie], Moya.MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getTopRatedMoviesResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var getSearchQueryResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
     
     var didCallGetTrendingMovies: Bool = false
     var didCallGetTrendingTV: Bool = false
@@ -24,7 +24,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
     var didCallGetTopRatedMovies: Bool = false
     var didCallGetSearchQuery: Bool = false
     
-    func getTrendingMovies() async throws -> [Netflix_Clone.Title] {
+    func getTrendingMovies() async throws -> [Netflix_Clone.Movie] {
         didCallGetTrendingMovies = true
         switch getTrendingMoviesResult {
         case .success(let titles):
@@ -34,7 +34,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
         }
     }
     
-    func getTrendingTV() async throws -> [Netflix_Clone.Title] {
+    func getTrendingTV() async throws -> [Netflix_Clone.Movie] {
         didCallGetTrendingTV = true
         switch getTrendingTVResult {
         case .success(let titles):
@@ -44,7 +44,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
         }
     }
     
-    func getUpcomingMovies() async throws -> [Netflix_Clone.Title] {
+    func getUpcomingMovies() async throws -> [Netflix_Clone.Movie] {
         didCallGetUpcomingMovies = true
         switch getUpcomingMoviesResult {
         case .success(let titles):
@@ -54,7 +54,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
         }
     }
     
-    func getPopularMovies() async throws -> [Netflix_Clone.Title] {
+    func getPopularMovies() async throws -> [Netflix_Clone.Movie] {
         didCallGetPopularMovies = true
         switch getPopularMoviesResult {
         case .success(let titles):
@@ -64,7 +64,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
         }
     }
     
-    func getTopRatedMovies() async throws -> [Netflix_Clone.Title] {
+    func getTopRatedMovies() async throws -> [Netflix_Clone.Movie] {
         didCallGetTopRatedMovies = true
         switch getTopRatedMoviesResult {
         case .success(let titles):
@@ -74,7 +74,7 @@ class FakeMovieDBRepository: MovieDBRepositoryProtocol {
         }
     }
     
-    func getSearchQuery(query: String) async throws -> [Netflix_Clone.Title] {
+    func getSearchQuery(query: String) async throws -> [Netflix_Clone.Movie] {
         didCallGetSearchQuery = true
         switch getSearchQueryResult {
         case .success(let titles):

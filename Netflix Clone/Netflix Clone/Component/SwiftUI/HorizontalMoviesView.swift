@@ -11,9 +11,9 @@ struct HorizontalMoviesView: View {
     // MARK: - Properties
     
     let title: String
-    @Binding var titles: [Title]
-    var action: (Title) -> Void
-    var longPressAction: ((Title) async -> Void)
+    @Binding var titles: [Movie]
+    var action: (Movie) -> Void
+    var longPressAction: ((Movie) async -> Void)
     
     private let spacing: CGFloat = 10
     private let itemSize: CGSize = .init(width: 140, height: 200)

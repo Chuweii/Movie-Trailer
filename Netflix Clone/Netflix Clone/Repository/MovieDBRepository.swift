@@ -9,12 +9,12 @@ import Foundation
 import Moya
 
 protocol MovieDBRepositoryProtocol {
-    func getTrendingMovies() async throws -> [Title]
-    func getTrendingTV() async throws -> [Title]
-    func getUpcomingMovies() async throws -> [Title]
-    func getPopularMovies() async throws -> [Title]
-    func getTopRatedMovies() async throws -> [Title]
-    func getSearchQuery(query: String) async throws -> [Title]
+    func getTrendingMovies() async throws -> [Movie]
+    func getTrendingTV() async throws -> [Movie]
+    func getUpcomingMovies() async throws -> [Movie]
+    func getPopularMovies() async throws -> [Movie]
+    func getTopRatedMovies() async throws -> [Movie]
+    func getSearchQuery(query: String) async throws -> [Movie]
 }
 
 class MovieDBRepository: MovieDBRepositoryProtocol {
@@ -25,33 +25,33 @@ class MovieDBRepository: MovieDBRepositoryProtocol {
         self.provider = provider
     }
     
-    func getTrendingMovies() async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getTrendingMovies)
+    func getTrendingMovies() async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getTrendingMovies)
         return response.results
     }
     
-    func getTrendingTV() async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getTrendingTV)
+    func getTrendingTV() async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getTrendingTV)
         return response.results
     }
     
-    func getUpcomingMovies() async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getUpcomingMovies)
+    func getUpcomingMovies() async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getUpcomingMovies)
         return response.results
     }
     
-    func getPopularMovies() async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getPopularMovies)
+    func getPopularMovies() async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getPopularMovies)
         return response.results
     }
     
-    func getTopRatedMovies() async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getTopRatedMovies)
+    func getTopRatedMovies() async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getTopRatedMovies)
         return response.results
     }
     
-    func getSearchQuery(query: String) async throws -> [Title] {
-        let response: TrendingTitleResponse = try await provider.async.request(.getSearchQuery(query: query))
+    func getSearchQuery(query: String) async throws -> [Movie] {
+        let response: TrendingMovieResponse = try await provider.async.request(.getSearchQuery(query: query))
         return response.results
     }
 }

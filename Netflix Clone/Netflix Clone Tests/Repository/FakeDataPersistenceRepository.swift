@@ -10,17 +10,17 @@ import Moya
 @testable import Netflix_Clone
 
 class FakeDataPersistenceRepository: DataPersistenceRepositoryProtocol {
-    var fetchMoviesResult: Result<[Title], MoyaError> = .failure(MoyaError.requestMapping(""))
+    var fetchMoviesResult: Result<[Movie], MoyaError> = .failure(MoyaError.requestMapping(""))
     
     var didCallDownloadMovieWithTitle: Bool = false
     var didCallFetchMovies: Bool = false
     var didCallDeleteMovieWithTitle: Bool = false
     
-    func downloadMovieWithTitle(model: Netflix_Clone.Title) async throws {
+    func downloadMovieWithTitle(model: Netflix_Clone.Movie) async throws {
         didCallDownloadMovieWithTitle = true
     }
     
-    func fetchMovies() async throws -> [Netflix_Clone.Title] {
+    func fetchMovies() async throws -> [Netflix_Clone.Movie] {
         didCallFetchMovies = true
         switch fetchMoviesResult {
         case .success(let success):
@@ -30,7 +30,7 @@ class FakeDataPersistenceRepository: DataPersistenceRepositoryProtocol {
         }
     }
     
-    func deleteMovieWithTitle(with title: Netflix_Clone.Title) async throws {
+    func deleteMovieWithTitle(with title: Netflix_Clone.Movie) async throws {
         didCallDeleteMovieWithTitle = true
     }
 }

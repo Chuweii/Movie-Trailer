@@ -8,11 +8,11 @@
 import Foundation
 import CoreData
 
-struct TrendingTitleResponse: Codable {
-    let results: [Title]
+struct TrendingMovieResponse: Codable {
+    let results: [Movie]
 }
 
-struct Title: Codable {
+struct Movie: Codable {
     let id: Int
     let media_type: String?
     let original_language: String?
@@ -25,23 +25,23 @@ struct Title: Codable {
     let vote_average: Double
 }
 
-extension Title {
-    init(titleItem: TitleItem) {
-        id = Int(titleItem.id)
-        media_type = titleItem.media_type
-        original_language = titleItem.original_language ?? ""
-        original_title = titleItem.original_title
-        original_name = titleItem.original_name
-        poster_path = titleItem.poster_path
-        overview = titleItem.overview
-        vote_count = Int(titleItem.vote_count)
-        release_date = titleItem.release_date
-        vote_average = titleItem.vote_average
+extension Movie {
+    init(movieItem: TitleItem) {
+        id = Int(movieItem.id)
+        media_type = movieItem.media_type
+        original_language = movieItem.original_language ?? ""
+        original_title = movieItem.original_title
+        original_name = movieItem.original_name
+        poster_path = movieItem.poster_path
+        overview = movieItem.overview
+        vote_count = Int(movieItem.vote_count)
+        release_date = movieItem.release_date
+        vote_average = movieItem.vote_average
     }
 }
 
 extension TitleItem {
-    convenience init(context: NSManagedObjectContext, title: Title) {
+    convenience init(context: NSManagedObjectContext, title: Movie) {
         self.init(context: context)
         id = Int64(title.id)
         original_title = title.original_title
