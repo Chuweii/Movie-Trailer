@@ -153,7 +153,7 @@ class YoutubeWebViewController: UIViewController {
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.numberOfLines = 0
         label.sizeToFit()
-        label.text = viewModel.title.overview
+        label.text = viewModel.movie.overview
         return label
     }()
     

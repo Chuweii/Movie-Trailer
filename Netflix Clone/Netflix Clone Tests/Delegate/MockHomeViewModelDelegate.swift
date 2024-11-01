@@ -14,7 +14,7 @@ class MockHomeViewModelDelegate: HomeViewModelDelegate {
     var didCallShowErrorMessage: Bool = false
     var didCallShowToast: Bool = false
 
-    func pushYoutubeWebView(title: Netflix_Clone.Movie) {
+    func pushYoutubeWebView(movie: Netflix_Clone.Movie) {
         didCallPushYoutubeWebView = true
     }
     

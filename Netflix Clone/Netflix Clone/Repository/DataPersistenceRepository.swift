@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 protocol DataPersistenceRepositoryProtocol {
-    func downloadMovieWithTitle(model: Movie) async throws
+    func downloadMovie(movie: Movie) async throws
     func fetchMovies() async throws -> [Movie]
-    func deleteMovieWithTitle(with title: Movie) async throws
+    func deleteMovie(with movie: Movie) async throws
 }
  
 class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
@@ -27,8 +27,8 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     // MARK: - Methods
     
     @MainActor
-    func downloadMovieWithTitle(model: Movie) async throws {
-        _ = TitleItem(context: context, title: model)
+    func downloadMovie(movie: Movie) async throws {
+        _ = MovieItem(context: context, movie: movie)
         
         do {
             try context.save()
@@ -40,7 +40,7 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     
     @MainActor
     func fetchMovies() async throws -> [Movie] {
-        let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
+        let request: NSFetchRequest<MovieItem> = MovieItem.fetchRequest()
         
         do {
             let titleItems = try context.fetch(request)
@@ -53,8 +53,8 @@ class DataPersistenceRepository: DataPersistenceRepositoryProtocol {
     }
     
     @MainActor
-    func deleteMovieWithTitle(with title: Movie) async throws {
-        let request: NSFetchRequest<TitleItem> = TitleItem.fetchRequest()
+    func deleteMovie(with title: Movie) async throws {
+        let request: NSFetchRequest<MovieItem> = MovieItem.fetchRequest()
         request.predicate = NSPredicate(format: "id == %d", title.id)
         
         do {

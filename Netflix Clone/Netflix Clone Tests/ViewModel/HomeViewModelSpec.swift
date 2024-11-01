@@ -32,7 +32,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get trending movies") {
             context("when get trending movies success") {
                 beforeEach {
-                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                 }
                 
@@ -45,7 +45,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get popular movies") {
             context("when get popular movies success") {
                 beforeEach {
-                    movieDBRepository.getPopularMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getPopularMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                 }
                 
@@ -58,7 +58,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get upcoming movies") {
             context("when get upcoming movies success") {
                 beforeEach {
-                    movieDBRepository.getUpcomingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getUpcomingMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                 }
                 
@@ -71,7 +71,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get trending TV") {
             context("when get trending TV success") {
                 beforeEach {
-                    movieDBRepository.getTrendingTVResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingTVResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                 }
                 
@@ -84,7 +84,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("get top rated movies") {
             context("when get top rated movies success") {
                 beforeEach {
-                    movieDBRepository.getTopRatedMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTopRatedMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                 }
                 
@@ -109,7 +109,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("play button") {
             context("when clicked play button") {
                 beforeEach {
-                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                     viewModel.didClickedPlay()
                 }
@@ -123,7 +123,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("download button") {
             context("when clicked download button") {
                 beforeEach {
-                    movieDBRepository.getTrendingMoviesResult = .success(getDummyTitles())
+                    movieDBRepository.getTrendingMoviesResult = .success(getDummyMovies())
                     await viewModel.onAppear()
                     await viewModel.didClickedDownload()
                 }
@@ -141,7 +141,7 @@ class HomeViewModelSpec: AsyncSpec {
         describe("movie image item") {
             context("when clicked movie image item") {
                 beforeEach {
-                    viewModel.didClickedImageItem(getDummyTitles()[0])
+                    viewModel.didClickedImageItem(getDummyMovies()[0])
                 }
                 
                 it("should push to youtube web screen") {
@@ -151,7 +151,7 @@ class HomeViewModelSpec: AsyncSpec {
             
             context("when long press movie image item") {
                 beforeEach {
-                    await viewModel.didLongPressImageItem(getDummyTitles()[0])
+                    await viewModel.didLongPressImageItem(getDummyMovies()[0])
                 }
                 
                 it("should download movie") {
@@ -166,7 +166,7 @@ class HomeViewModelSpec: AsyncSpec {
         
         // MARK: - Fake Data
         
-        func getDummyTitles() -> [Movie] {
+        func getDummyMovies() -> [Movie] {
             [
                 Movie(
                     id: 1,

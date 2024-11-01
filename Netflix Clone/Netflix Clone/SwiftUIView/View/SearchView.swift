@@ -22,7 +22,7 @@ struct SearchView: View {
                     ],
                     spacing: spacing
                 ) {
-                    ForEach(viewModel.titles, id: \.id) { title in
+                    ForEach(viewModel.movies, id: \.id) { title in
                         GridItemView(title: title) { title in
                             viewModel.didClickedItem(title)
                         }

@@ -26,7 +26,7 @@ struct Movie: Codable {
 }
 
 extension Movie {
-    init(movieItem: TitleItem) {
+    init(movieItem: MovieItem) {
         id = Int(movieItem.id)
         media_type = movieItem.media_type
         original_language = movieItem.original_language ?? ""
@@ -40,17 +40,17 @@ extension Movie {
     }
 }
 
-extension TitleItem {
-    convenience init(context: NSManagedObjectContext, title: Movie) {
+extension MovieItem {
+    convenience init(context: NSManagedObjectContext, movie: Movie) {
         self.init(context: context)
-        id = Int64(title.id)
-        original_title = title.original_title
-        original_name = title.original_name
-        media_type = title.media_type
-        overview = title.overview
-        poster_path = title.poster_path
-        release_date = title.release_date
-        vote_count = Int64(title.vote_count)
-        vote_average = title.vote_average
+        id = Int64(movie.id)
+        original_title = movie.original_title
+        original_name = movie.original_name
+        media_type = movie.media_type
+        overview = movie.overview
+        poster_path = movie.poster_path
+        release_date = movie.release_date
+        vote_count = Int64(movie.vote_count)
+        vote_average = movie.vote_average
     }
 }

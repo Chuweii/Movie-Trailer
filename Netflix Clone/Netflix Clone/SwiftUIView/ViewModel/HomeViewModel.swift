@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol HomeViewModelDelegate {
-    func pushYoutubeWebView(title: Movie)
+    func pushYoutubeWebView(movie: Movie)
     func showErrorMessage(error: String)
     func showToast(_ message: String)
 }
@@ -18,7 +18,7 @@ class HomeViewModel {
     // MARK: - Properties
 
     var bannerImage: URL?
-    var bannerTitle: Movie?
+    var bannerMovie: Movie?
     var trendingMovies: [Movie] = []
     var popularMovies: [Movie] = []
     var trendingTV: [Movie] = []
@@ -43,22 +43,22 @@ class HomeViewModel {
     
     // MARK: - Click Action
     
-    func didClickedImageItem(_ title: Movie) {
-        delegate.pushYoutubeWebView(title: title)
+    func didClickedImageItem(_ movie: Movie) {
+        delegate.pushYoutubeWebView(movie: movie)
     }
     
     func didClickedPlay() {
-        guard let title = bannerTitle else { return }
-        delegate.pushYoutubeWebView(title: title)
+        guard let movie = bannerMovie else { return }
+        delegate.pushYoutubeWebView(movie: movie)
     }
     
     func didClickedDownload() async {
-        guard let title = bannerTitle else { return }
-        await downloadMovie(title)
+        guard let movie = bannerMovie else { return }
+        await downloadMovie(movie)
     }
     
-    func didLongPressImageItem(_ title: Movie) async {
-        await downloadMovie(title)
+    func didLongPressImageItem(_ movie: Movie) async {
+        await downloadMovie(movie)
     }
     
     // MARK: - API Call
@@ -85,8 +85,8 @@ class HomeViewModel {
     private func getTrendingMovies() async {
         do {
             trendingMovies = try await movieDBRepository.getTrendingMovies().shuffled()
-            bannerTitle = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
-            bannerImage = .movieDBImagePath(imagePath: bannerTitle?.poster_path ?? "")
+            bannerMovie = trendingMovies.filter({ $0.poster_path != nil && $0.poster_path != "" }).randomElement()
+            bannerImage = .movieDBImagePath(imagePath: bannerMovie?.poster_path ?? "")
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -131,9 +131,9 @@ class HomeViewModel {
     
     // MARK: - Methods
     
-    private func downloadMovie(_ title: Movie) async {
+    private func downloadMovie(_ movie: Movie) async {
         do {
-            try await dataPersistenceRepository.downloadMovieWithTitle(model: title)
+            try await dataPersistenceRepository.downloadMovie(movie: movie)
             self.delegate.showToast("Downloaded!! 🥳🥳 Check out on Download page.")
         } 
         catch {

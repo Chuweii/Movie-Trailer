@@ -15,21 +15,21 @@ class YoutubeWebViewModel {
     @Published var shouldShowToast: Bool = false
     private(set) var videoURL: URL?
     private(set) lazy var getMovieTitle: String = {
-        title.original_title ?? title.original_name ?? ""
+        movie.original_title ?? movie.original_name ?? ""
     }()
 
     // MARK: - Init
     
-    private(set) var title: Movie
+    private(set) var movie: Movie
     private let repository: YoutubeRepositoryProtocol
     private let dataPersistenceRepository: DataPersistenceRepositoryProtocol
     
     init(
-        title: Movie,
+        movie: Movie,
         repository: YoutubeRepositoryProtocol = YoutubeRepository(),
         dataPersistenceRepository: DataPersistenceRepositoryProtocol = DataPersistenceRepository()
     ) {
-        self.title = title
+        self.movie = movie
         self.repository = repository
         self.dataPersistenceRepository = dataPersistenceRepository
     }
@@ -52,7 +52,7 @@ class YoutubeWebViewModel {
     
     func downloadMovie() async {
         do {
-            try await dataPersistenceRepository.downloadMovieWithTitle(model: title)
+            try await dataPersistenceRepository.downloadMovie(movie: movie)
             self.shouldShowToast = true
         }
         catch {

@@ -13,7 +13,7 @@ struct DownloadView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.titles, id: \.id) { title in
+                ForEach(viewModel.movies, id: \.id) { title in
                     CommonListRow(title: title, showPlayIcon: false) { _ in }
                 }
                 .onDelete(perform: { indexSet in

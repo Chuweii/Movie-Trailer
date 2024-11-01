@@ -16,7 +16,7 @@ class FakeDataPersistenceRepository: DataPersistenceRepositoryProtocol {
     var didCallFetchMovies: Bool = false
     var didCallDeleteMovieWithTitle: Bool = false
     
-    func downloadMovieWithTitle(model: Netflix_Clone.Movie) async throws {
+    func downloadMovie(movie: Netflix_Clone.Movie) async throws {
         didCallDownloadMovieWithTitle = true
     }
     
@@ -30,7 +30,7 @@ class FakeDataPersistenceRepository: DataPersistenceRepositoryProtocol {
         }
     }
     
-    func deleteMovieWithTitle(with title: Netflix_Clone.Movie) async throws {
+    func deleteMovie(with title: Netflix_Clone.Movie) async throws {
         didCallDeleteMovieWithTitle = true
     }
 }

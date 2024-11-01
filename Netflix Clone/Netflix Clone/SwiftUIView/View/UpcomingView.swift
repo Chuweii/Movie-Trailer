@@ -13,7 +13,7 @@ struct UpcomingView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.titles, id: \.id) { title in
+                ForEach(viewModel.movies, id: \.id) { title in
                     CommonListRow(title: title) { title in
                         viewModel.didClickedItem(title)
                     }

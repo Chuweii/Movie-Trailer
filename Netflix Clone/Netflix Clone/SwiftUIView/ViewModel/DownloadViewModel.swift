@@ -13,7 +13,7 @@ protocol DownloadViewModelDelegate {
 
 @Observable
 class DownloadViewModel {
-    var titles: [Movie] = []
+    var movies: [Movie] = []
 
     // MARK: - Init
 
@@ -45,7 +45,7 @@ class DownloadViewModel {
 
     private func getDownloadMovies() async {
         do {
-            titles = try await repository.fetchMovies()
+            movies = try await repository.fetchMovies()
         } catch {
             delegate.showErrorMessage(error: error.localizedDescription)
         }
@@ -53,10 +53,10 @@ class DownloadViewModel {
 
     private func deleteDownloadMovie(_ offsets: IndexSet) async {
         for index in offsets {
-            if index < titles.count {
-                let titleToDelete = titles[index]
+            if index < movies.count {
+                let movieToDelete = movies[index]
                 do {
-                    try await repository.deleteMovieWithTitle(with: titleToDelete)
+                    try await repository.deleteMovie(with: movieToDelete)
                 } catch {
                     delegate.showErrorMessage(error: error.localizedDescription)
                 }

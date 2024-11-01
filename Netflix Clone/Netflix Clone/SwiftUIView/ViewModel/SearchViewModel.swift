@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 protocol SearchViewModelDelegate {
-    func pushYoutubeWebView(title: Movie)
+    func pushYoutubeWebView(movie: Movie)
     func showErrorMessage(error: String)
 }
 
@@ -18,7 +18,7 @@ protocol SearchViewModelDelegate {
 class SearchViewModel: ObservableObject {
     // MARK: - Properties
 
-    @Published var titles: [Movie] = []
+    @Published var movies: [Movie] = []
     @Published var searchText: String = ""
     private var cancellables: Set<AnyCancellable> = .init()
 
@@ -38,8 +38,8 @@ class SearchViewModel: ObservableObject {
 
     // MARK: - Methods
 
-    func didClickedItem(_ title: Movie) {
-        delegate.pushYoutubeWebView(title: title)
+    func didClickedItem(_ movie: Movie) {
+        delegate.pushYoutubeWebView(movie: movie)
     }
 
     func onAppear() async {
@@ -47,9 +47,9 @@ class SearchViewModel: ObservableObject {
     }
 
     private func getPopularMovies() async {
-        guard titles.isEmpty else { return }
+        guard movies.isEmpty else { return }
         do {
-            titles = try await repository.getPopularMovies()
+            movies = try await repository.getPopularMovies()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
@@ -58,7 +58,7 @@ class SearchViewModel: ObservableObject {
 
     private func getSearchQuery() async {
         do {
-            titles = try await repository.getSearchQuery(query: searchText)
+            movies = try await repository.getSearchQuery(query: searchText)
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)

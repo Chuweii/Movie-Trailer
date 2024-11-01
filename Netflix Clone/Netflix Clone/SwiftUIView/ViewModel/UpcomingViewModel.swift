@@ -8,13 +8,13 @@
 import SwiftUI
 
 protocol UpcomingViewModelDelegate {
-    func pushYoutubeWebView(title: Movie)
+    func pushYoutubeWebView(movie: Movie)
     func showErrorMessage(error: String)
 }
 
 @Observable
 class UpcomingViewModel {
-    var titles: [Movie] = []
+    var movies: [Movie] = []
     
     // MARK: - Init
     
@@ -31,12 +31,12 @@ class UpcomingViewModel {
     
     // MARK: - Methods
     
-    func didClickedItem(_ title: Movie) {
-        delegate.pushYoutubeWebView(title: title)
+    func didClickedItem(_ movie: Movie) {
+        delegate.pushYoutubeWebView(movie: movie)
     }
 
     func onAppear() async {
-        guard titles.isEmpty else { return }
+        guard movies.isEmpty else { return }
         await getUpComingMovies()
     }
     
@@ -46,7 +46,7 @@ class UpcomingViewModel {
 
     private func getUpComingMovies() async {
         do {
-            titles = try await repository.getUpcomingMovies().shuffled()
+            movies = try await repository.getUpcomingMovies().shuffled()
         } 
         catch {
             delegate.showErrorMessage(error: error.localizedDescription)
